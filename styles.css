@@ -140,7 +140,9 @@ body {
 }
 /* Cards Section Styling */
 .cards-container {
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the size of the boxes */
     gap: 1.5em;
     margin: 3em 0;
