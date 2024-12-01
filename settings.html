@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,8 @@
         <nav class="navbar">
             <a href="#">
                 <img src="/Images/logo.webp" alt="Collectible Cards Logo" class="logo">
-            </a>          
-              <div class="search-bar">
+            </a>
+            <div class="search-bar">
                 <input type="text" placeholder="Search cards...">
                 <button type="submit">Search</button>
             </div>
@@ -37,92 +38,92 @@
 
     <div id="settings">
 
-    
-    <div id="sidenav">
-        <a id="account-info-link" onclick="changeSettingsDiv('account-info')">Account Info</a>
-        <a id="order-history-link" onclick="changeSettingsDiv('order-history')">Order History</a>
-        <a id="payment-info-link" onclick="changeSettingsDiv('payment-info')">Payment Info</a>
-        <a id="switch-accounts-link" onclick="changeSettingsDiv('switch-accounts')">Switch Accounts</a>
-    </div>
 
-    <div class="settings-info" id="account-info">
-        <h3 class="settings-info-header">Account Info: </h3>
-        <ul>
-            <li>Account Name</li>
-            <section class="settings-section">
-                <p>Dylan Cordoni</p>
-                <button id="name-edit">edit</button>
-            </section>
-            
-            <li>Email</li>
-            <section class="settings-section">
-                <p>dylancordoni@gmail.com</p>
-                <button id="email-edit">edit</button>
-            </section>
-            
-            <li>Shipping Address</li>
-            <section class="settings-section">
-                <p>some address</p>
-                <button id="address-edit">edit</button>
-            </section>
-            
-            <li>Password</li>
-            <section class="settings-section">
-                <p>**********</p>
-                <button id="pw-edit">edit</button>
-            </section>
-        </ul>
-    </div>
+        <div id="sidenav">
+            <a id="account-info-link" onclick="changeSettingsDiv('account-info')">Account Info</a>
+            <a id="order-history-link" onclick="changeSettingsDiv('order-history')">Order History</a>
+            <a id="payment-info-link" onclick="changeSettingsDiv('payment-info')">Payment Info</a>
+            <a id="switch-accounts-link" onclick="changeSettingsDiv('switch-accounts')">Switch Accounts</a>
+        </div>
 
-    <div class="settings-info" id="order-history">
-        <h3 class="settings-info-header">Order History: </h3>
-        <div class="card-history">
-            <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-            <h3 class="card-title">Cristiano Ronaldo</h3>
-            <p class="card-price">$49.99</p>
-            <button class="add-to-cart">Buy Again</button>
-        </div>
-            
-        <div class="card-history">
-            <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-            <h3 class="card-title">Cristiano Ronaldo</h3>
-            <p class="card-price">$49.99</p>
-            <button class="add-to-cart">Buy Again</button>
-        </div>
-            
-        <div class="card-history">
-            <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-            <h3 class="card-title">Cristiano Ronaldo</h3>
-            <p class="card-price">$49.99</p>
-            <button class="add-to-cart">Buy Again</button>
-        </div>
-            
-        <div class="card-history">
-            <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-            <h3 class="card-title">Cristiano Ronaldo</h3>
-            <p class="card-price">$49.99</p>
-            <button class="add-to-cart">Buy Again</button>
-        </div>
-    </div>
-
-    <div class="settings-info" id="payment-info">
-        <h3 class="settings-info-header">Payment Info: </h3>      
-        <div class="payment-method">
+        <div class="settings-info" id="account-info">
+            <h3 class="settings-info-header">Account Info: </h3>
             <ul>
-                <li>Card Info</li>
-                <p id="card-number">VISA **** **** **** 0000</p>
-                <li>Billing Address</li>
-                <p id="billing-address">some address</p>
+                <li>Account Name</li>
+                <section class="settings-section">
+                    <p>Dylan Cordoni</p>
+                    <button id="name-edit">edit</button>
+                </section>
+
+                <li>Email</li>
+                <section class="settings-section">
+                    <p>dylancordoni@gmail.com</p>
+                    <button id="email-edit">edit</button>
+                </section>
+
+                <li>Shipping Address</li>
+                <section class="settings-section">
+                    <p>some address</p>
+                    <button id="address-edit">edit</button>
+                </section>
+
+                <li>Password</li>
+                <section class="settings-section">
+                    <p>**********</p>
+                    <button id="pw-edit">edit</button>
+                </section>
             </ul>
         </div>
-        <button id="add-payment-button">Add Payment Option</button>
-    </div>
 
-    <div class="settings-info" id="switch-accounts">
-        <h3 class="settings-info-header">Are you sure you want to switch accounts?</h3>      
-        <button id="switch-accounts-button">Sign Out</button>
-    </div>
+        <div class="settings-info" id="order-history">
+            <h3 class="settings-info-header">Order History: </h3>
+            <div class="card-history">
+                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                <h3 class="card-title">Cristiano Ronaldo</h3>
+                <p class="card-price">$49.99</p>
+                <button class="add-to-cart">Buy Again</button>
+            </div>
 
-</div>
-<script src="settings.js"></script>
+            <div class="card-history">
+                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                <h3 class="card-title">Cristiano Ronaldo</h3>
+                <p class="card-price">$49.99</p>
+                <button class="add-to-cart">Buy Again</button>
+            </div>
+
+            <div class="card-history">
+                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                <h3 class="card-title">Cristiano Ronaldo</h3>
+                <p class="card-price">$49.99</p>
+                <button class="add-to-cart">Buy Again</button>
+            </div>
+
+            <div class="card-history">
+                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                <h3 class="card-title">Cristiano Ronaldo</h3>
+                <p class="card-price">$49.99</p>
+                <button class="add-to-cart">Buy Again</button>
+            </div>
+        </div>
+
+        <div class="settings-info" id="payment-info">
+            <h3 class="settings-info-header">Payment Info: </h3>
+            <div class="payment-method">
+                <ul>
+                    <li>Card Info</li>
+                    <p id="card-number">VISA **** **** **** 0000</p>
+                    <li>Billing Address</li>
+                    <p id="billing-address">some address</p>
+                </ul>
+            </div>
+            <button id="add-payment-button">Add Payment Option</button>
+        </div>
+
+        <div class="settings-info" id="switch-accounts">
+            <h3 class="settings-info-header">Are you sure you want to switch accounts?</h3>
+            <button id="switch-accounts-button">Sign Out</button>
+        </div>
+
+    </div>
+    <script src="settings.js"></script>
 </body>
