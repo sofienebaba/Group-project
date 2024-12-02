@@ -46,83 +46,189 @@
         </nav>
 
         <div class="settings-info" id="account-info">
-            <h3 class="settings-info-header">Account Info: </h3>
-            <ul>
-                <li>Account Name</li>
-                <section class="settings-section">
-                    <p>Dylan Cordoni</p>
-                    <button id="name-edit">edit</button>
-                </section>
+            <h3 class="settings-info-header">Account Info </h3>
+            <ul class="account-info-list">
+                <div class="account-info-item">
+                    <li>Account Name</li>
+                    <section class="settings-section">
+                        <p>Dylan Cordoni</p>
+                        <button class="add-to-cart" id="name-edit-button" onclick="openEditInfo('name-edit')">edit</button>
+                    </section>
+                </div>
 
-                <li>Email</li>
-                <section class="settings-section">
-                    <p>dylancordoni@gmail.com</p>
-                    <button id="email-edit">edit</button>
-                </section>
+                <div class="account-info-item">
+                    <li>Email</li>
+                    <section class="settings-section">
+                        <p>dylancordoni@gmail.com</p>
+                        <button class="add-to-cart" id="email-edit-button" onclick="openEditInfo('email-edit')">edit</button>
+                    </section>
+                </div>
 
-                <li>Shipping Address</li>
-                <section class="settings-section">
-                    <p>some address</p>
-                    <button id="address-edit">edit</button>
-                </section>
+                <div class="account-info-item">
+                    <li>Password</li>
+                    <section class="settings-section">
+                        <p>**********</p>
+                        <button class="add-to-cart" id="pw-edit-button" onclick="openEditInfo('password-edit')">edit</button>
+                    </section>
+                </div>
 
-                <li>Password</li>
-                <section class="settings-section">
-                    <p>**********</p>
-                    <button id="pw-edit">edit</button>
-                </section>
+                <div class="account-info-item">
+                    <li>Shipping Address</li>
+                    <section class="settings-section">
+                        <p>some address</p>
+                        <button class="add-to-cart" id="address-edit-button" onclick="openEditInfo('address-edit')">edit</button>
+                    </section>
+                </div>
             </ul>
         </div>
 
         <div class="settings-info" id="order-history">
-            <h3 class="settings-info-header">Order History: </h3>
-            <div class="card-history">
-                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-                <h3 class="card-title">Cristiano Ronaldo</h3>
-                <p class="card-price">$49.99</p>
-                <button class="add-to-cart">Buy Again</button>
-            </div>
-
-            <div class="card-history">
-                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-                <h3 class="card-title">Cristiano Ronaldo</h3>
-                <p class="card-price">$49.99</p>
-                <button class="add-to-cart">Buy Again</button>
-            </div>
-
-            <div class="card-history">
-                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-                <h3 class="card-title">Cristiano Ronaldo</h3>
-                <p class="card-price">$49.99</p>
-                <button class="add-to-cart">Buy Again</button>
-            </div>
-
-            <div class="card-history">
-                <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-                <h3 class="card-title">Cristiano Ronaldo</h3>
-                <p class="card-price">$49.99</p>
-                <button class="add-to-cart">Buy Again</button>
+            <h3 class="settings-info-header">Order History </h3>
+            <div class="card-list">
+                <div class="card-product">
+                    <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                    <h3 class="card-title">Cristiano Ronaldo</h3>
+                    <p class="card-price">$49.99</p>
+                    <button class="add-to-cart">Buy Again</button>
+                </div>
+    
+                <div class="card-product">
+                    <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                    <h3 class="card-title">Cristiano Ronaldo</h3>
+                    <p class="card-price">$49.99</p>
+                    <button class="add-to-cart">Buy Again</button>
+                </div>
+    
+                <div class="card-product">
+                    <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                    <h3 class="card-title">Cristiano Ronaldo</h3>
+                    <p class="card-price">$49.99</p>
+                    <button class="add-to-cart">Buy Again</button>
+                </div>
+    
+                <div class="card-product">
+                    <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+                    <h3 class="card-title">Cristiano Ronaldo</h3>
+                    <p class="card-price">$49.99</p>
+                    <button class="add-to-cart">Buy Again</button>
+                </div>
             </div>
         </div>
 
         <div class="settings-info" id="payment-info">
-            <h3 class="settings-info-header">Payment Info: </h3>
+            <h3 class="settings-info-header">Payment Info </h3>
             <div class="payment-method">
-                <ul>
-                    <li>Card Info</li>
-                    <p id="card-number">VISA **** **** **** 0000</p>
-                    <li>Billing Address</li>
-                    <p id="billing-address">some address</p>
+                <ul class="account-info-list">
+                    <div class="account-info-item">
+                        <li>Card Info</li>
+                        <p id="card-number">VISA **** **** **** 0000</p>
+                    </div>
+                    <div class="account-info-item">
+                        <li>Billing Address</li>
+                        <p id="billing-address">some address</p>
+                    </div>
                 </ul>
             </div>
-            <button id="add-payment-button">Add Payment Option</button>
+            <button class="add-to-cart" id="add-payment-button" onclick="openEditInfo('add-payment-panel')">Add Payment Option</button>
         </div>
 
         <div class="settings-info" id="switch-accounts">
-            <h3 class="settings-info-header">Are you sure you want to switch accounts?</h3>
-            <button id="switch-accounts-button">Sign Out</button>
+            <h3 class="settings-info-header">Switch Accounts</h3>
+            <button class="add-to-cart" id="switch-accounts-button" onclick="openEditInfo('confirm-signout')">Sign Out</button>
         </div>
 
+    </div>
+
+    <div id="name-edit" class="modal">
+        <div class="modal-content">
+            <span class="close" id="name-close" onclick="closeModal()">&times;</span>
+            <h2>Change Account Name</h2>
+            <form>
+                <label for="new-account-name">New Account Name</label>
+                <input type="text" id="new-account-name" name="new-account-name" placeholder="John Doe" required>
+                <button type="button" id="confirm-change-button" class="pay-now-button" onclick="saveChanges()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="email-edit" class="modal">
+        <div class="modal-content">
+            <span class="close" id="email-close" onclick="closeModal()">&times;</span>
+            <h2>Change Email Address</h2>
+            <form>
+                <label for="new-email">New Email</label>
+                <input type="text" id="new-email" name="new-email" placeholder="JohnDoe@gmail.com" required>
+                <button type="button" id="confirm-change-button" class="pay-now-button" onclick="saveChanges()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="password-edit" class="modal">
+        <div class="modal-content">
+            <span class="close" id="password-close" onclick="closeModal()">&times;</span>
+            <h2>Change Password</h2>
+            <form>
+                <label for="new-password">New Password</label>
+                <input type="text" name="new-password" id="new-password"  required>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="text" name="confirm-password" id="confirm-password"  required>
+                <button type="button" id="confirm-change-button" class="pay-now-button" onclick="saveChanges()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="address-edit" class="modal">
+        <div class="modal-content">
+            <span class="close" id="address-close" onclick="closeModal()">&times;</span>
+            <h2>Change Shipping Address</h2>
+            <form>
+                <label for="new-address">Address</label>
+                <input type="text" id="new-address" name="new-address" required>
+                <label for="new-city">City</label>
+                <input type="text" id="new-city" name="new-city" required>
+                <label for="new-state">State/Province</label>
+                <input type="text" id="new-state" name="new-state" required>
+                <label for="new-Zipcode">Zipcode</label>
+                <input type="text" id="new-Zipcode" name="new-Zipcode" required>
+                <button type="button" id="confirm-change-button" class="pay-now-button" onclick="saveChanges()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-payment-panel" class="modal">
+        <div class="modal-content">
+            <span class="close" id="payment-close" onclick="closeModal()">&times;</span>
+            <h2>Payment Details</h2>
+            <form>
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method">
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">MasterCard</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="Enter your card number" required>
+
+                <label for="exp-date">Expiration Date</label>
+                <input type="month" id="exp-date" required>
+
+                <label for="cvc">CVC</label>
+                <input type="text" id="cvc" placeholder="Enter CVC" required>
+
+                <button type="button" id="confirm-payment-checkout" class="pay-now-button">Pay Now</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-signout" class="modal">
+        <div class="modal-content">
+            <span class="close" id="signout-close" onclick="closeModal()">&times;</span>
+            <h2>Are you sure you want to signout?</h2>
+            <form action="index.html">
+                <input type="submit" id="confirm-change-button" class="pay-now-button" value="Signout"/>
+            </form>
+        </div>
     </div>
 
     <footer>

@@ -437,29 +437,47 @@ main {
     color: #333;
     cursor: pointer;
 }
+
 .close:hover {
     color: #ff6600;
 }
 
-
-/*Account settings/Product page styling*/
+/*Account settings styling*/
 #settings {
     display: flex;
+    margin-bottom: 10px;
 }
 
+.account-info-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.account-info-item {
+    width: 35%;
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+
+/*sidenav also used for products page */
 .sidenav {
     width: 20%;
     background-color: #134268;
+    border: 1px solid #0f3655;
     padding-top: 10px;
     margin: 10px;
     color: #ffffff;
     overflow: auto;
     height: 100%;
-
+    border-radius: 8px;
 }
 
 .sidenav h2 {
     margin-left: 5px;
+    font-size: 2em;
+    margin-top: 0;
 }
 
 
@@ -473,6 +491,7 @@ main {
     font-size: 25px;
     display: block;
     font-size: 1.1em;
+    margin-bottom: 10px;
 }
 
 .sidenav a:hover {
@@ -481,7 +500,6 @@ main {
 }
 
 .settings-info {
-    border: solid #134268 1px;
     width: 100%;
     margin-right: 20px;
     margin-top: 10px;
@@ -489,6 +507,8 @@ main {
 
 .settings-info-header {
     margin-left: 10px;
+    margin-top: 10px;
+    font-size: 1.75em;
 }
 
 .settings-info ul li {
@@ -510,7 +530,7 @@ main {
 }
 
 .order-history {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
     gap: 1.5em;
     margin: 2em 1em; 
@@ -579,6 +599,13 @@ main {
     display: none;
 }
 
+/* Products styling */
+#products {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Removes arrows for number input fields */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -589,9 +616,45 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+#min-value-price {
+    width: 80%;
+}
+
+#max-value-price {
+    width: 80%;
+}
+
 .filter-button {
+    width: 100px;
     padding: 10px;
-    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5em;
+    margin: 3em 0;
+    padding: 0 1em;
+}
+
+.card-product {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 1em;
+    margin: 2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
 /* Main Checkout Container */
