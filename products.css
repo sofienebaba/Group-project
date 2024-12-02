@@ -1,0 +1,27 @@
+#products {
+    display: flex;
+    flex-direction: row;
+}
+
+#product-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    /*grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));*/
+    gap: 1.5em;
+    margin: 3em 0;
+    padding: 0 1em;
+}
+
+.card-product {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 1em;
+    margin: 5em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
