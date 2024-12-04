@@ -5,220 +5,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Collectible Cards</title>
-    
     <link rel="stylesheet" href="styles.css">
+    <script defer src="cart.js"></script>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <a href="#">
-                <img src="/Images/logo.webp" alt="Collectible Cards Logo" class="logo">
-            </a>
-            <div class="search-bar">
-                <input type="text" placeholder="Search cards...">
-                <button type="submit">Search</button>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#Help">Help</a></li>
-                <li><a href="Account.html">Account</a></li>
-                <li><a href="#Cart">🛒</a></li>
-            </ul>
-        </nav>
+<header>
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="/Images/logo.webp" alt="Collectible Cards Logo" class="logo">
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search cards...">
+            <button type="submit">Search</button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="Account.html">Account</a></li>
+            <li><a href="cart.html">🛒</a></li>
+        </ul>
+    </nav>
 
-        <nav class="secondary-navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Categories</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">About Us</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="secondary-navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Cards</a></li>
+            <li><a href="about_us_faq.html#FAQ">FAQ</a></li>
+            <li><a href="about_us_faq.html#AboutUs">About Us</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <div id="products">
-        <nav class="sidenav" id="products-nav">
-            <h2>Filters</h2>
-
-            <form id="filter-form">
-                <h3>Sport</h3>
-                <input type="checkbox" id="soccer" name="soccer" value="soccer">
-                <label for="soccer"> Soccer</label><br>
-                <input type="checkbox" id="basketball" name="basketball" value="basketball">
-                <label for="basketball"> Basketball</label><br>
-                <input type="checkbox" id="baseball" name="baseball" value="baseball">
-                <label for="baseball"> Baseball</label><br>
-                <input type="checkbox" id="football" name="football" value="football">
-                <label for="football"> Football</label><br>
-
-                <h3>Condition</h3>
-                <input type="checkbox" id="mint" name="mint" value="mint">
-                <label for="mint"> Mint</label><br>
-                <input type="checkbox" id="excellent" name="excellent" value="excellent">
-                <label for="excellent"> Excellent</label><br>
-                <input type="checkbox" id="good" name="good" value="good">
-                <label for="good"> Good</label><br>
-                <input type="checkbox" id="fair" name="fair" value="fair">
-                <label for="fair"> Fair</label><br>
-                <input type="checkbox" id="poor" name="poor" value="poor">
-                <label for="poor"> Poor</label><br>
-
-                <h3>Price</h3>
-                <label for="min-value-price"> Min Price: </label>
-                <input type="number" id="min-value-price" name="min-value-price"> <br>
-                <label for="max-value-price"> Max Price: </label>
-                <input type="number" id="max-value-price" name="max-value-price">
-
-                <input type="submit" value="Search Filters" class="filter-button">
-                <input type="reset" value="Reset Filters" class="filter-button">
-            </form>
-        </nav>
-
-        <div class="card-list" id="product-list">
-            <div class="card-product">
-                <img src="/Images/Cristiano Ronaldo.jpg" alt="2014 PANINI PRIZM WORLD CUP CRISTIANO RONALDO AUTOGRAPHED" class="card-image">
-                <h3 class="card-title">2014 PANINI PRIZM WORLD CUP CRISTIANO RONALDO AUTOGRAPHED</h3>
-                <p class="card-price">$450.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/jrodriguez.jpg" alt="2018-19 Panini Donruss Soccer #111 James Rodriguez COLOMBIA MIDFIELDER base card" class="card-image">
-                <h3 class="card-title">2018-19 Panini Donruss Soccer #111 James Rodriguez COLOMBIA MIDFIELDER base card</h3>
-                <p class="card-price">$20.56</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/Kobe-Bryant-1996.webp" alt="1996-97 Topps NBA 50th #138 Kobe Bryant Lakers RC Rookie Card" class="card-image">
-                <h3 class="card-title">1996-97 Topps NBA 50th #138 Kobe Bryant Lakers RC Rookie Card</h3>
-                <p class="card-price">$599.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/mahomes.jpg" alt="2023 PANINI ILLUSIONS FOOTBALL HOBBY 4 BOX BREAK #3 – RANDOM TEAMS" class="card-image">
-                <h3 class="card-title">2023 PANINI ILLUSIONS FOOTBALL HOBBY 4 BOX BREAK #3 – RANDOM TEAMS</h3>
-                <p class="card-price">$59.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/Messi.jpg" alt="2022 Panini Instant FIFA World Cup Qatar #118 Lionel Messi Soccer Card Argentina - Wins 2022 World Cup
-                " class="card-image">
-                <h3 class="card-title">2022 Panini Instant FIFA World Cup Qatar #118 Lionel Messi Soccer Card Argentina - Wins 2022 World Cup
-                </h3>
-                <p class="card-price">$89.95</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/Michael-Jordan.webp" alt="1999-00 UPPER DECK JAMBOREE INSERT CARD #J1 Michael Jordan Chicago Bulls" class="card-image">
-                <h3 class="card-title">1999-00 UPPER DECK JAMBOREE INSERT CARD #J1 Michael Jordan Chicago Bulls</h3>
-                <p class="card-price">$150.53</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/sterling.jpg" alt="2023 Panini Prizm EPL Breakaway Raheem Sterling BB1024 Chelsea FC #184" class="card-image">
-                <h3 class="card-title">2023 Panini Prizm EPL Breakaway Raheem Sterling BB1024 Chelsea FC #184</h3>
-                <p class="card-price">$15.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/stroud.jpg" alt="2023 Panini Illusions Football CJ STROUD Holo Rookie Card-One Touch- Texans #43" class="card-image">
-                <h3 class="card-title">2023 Panini Illusions Football CJ STROUD Holo Rookie Card-One Touch- Texans #43</h3>
-                <p class="card-price">$10.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/2019-20 ZION WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD 155.webp" alt="2019-20 ZION WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD " class="card-image">
-                <h3 class="card-title">2019-20 ZION WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD</h3>
-                <p class="card-price">$155.45</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/2023 Topps Chrome UCL Erling Haaland Specimen 398.webp" alt="2023 Topps Chrome UCL Erling Haaland Specimen " class="card-image">
-                <h3 class="card-title">2023 Topps Chrome UCL Erling Haaland Specimen </h3>
-                <p class="card-price">$398.58</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/2023-24 Topps Chrome UEFA Club Competitions 75.webp" alt="2023-24 Topps Chrome UEFA Club Competitions  " class="card-image">
-                <h3 class="card-title">2023-24 Topps Chrome UEFA Club Competitions  </h3>
-                <p class="card-price">$75.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-
-            <div class="card-product">
-                <img src="/Images/2024 Topps Now MLS 128 Lionel Messi, Stephen Curry 50.webp" alt="2024 Topps Now MLS 128 Lionel Messi, Stephen Curry " class="card-image">
-                <h3 class="card-title">2024 Topps Now MLS 128 Lionel Messi, Stephen Curry </h3>
-                <p class="card-price">$50.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-
-            <div class="card-product">
-                <img src="/Images/2024 Topps Now SHOHEI OHTANI.webp" alt="2024 Topps Now SHOHEI OHTANI " class="card-image">
-                <h3 class="card-title">2024 Topps Now SHOHEI OHTANI </h3>
-                <p class="card-price">$40.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/KYLIAN MBAPPE 1ST REAL MADRID CARD  60.webp" alt="KYLIAN MBAPPE 1ST REAL MADRID CARD " class="card-image">
-                <h3 class="card-title">KYLIAN MBAPPE 1ST REAL MADRID CARD </h3>
-                <p class="card-price">$60.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-
-            <div class="card-product">
-                <img src="/Images/PATRICK MAHOMES 2020 PANINI MOSAIC MVPs 200.webp" alt="PATRICK MAHOMES 2020 PANINI MOSAIC MVPs " class="card-image">
-                <h3 class="card-title">PATRICK MAHOMES 2020 PANINI MOSAIC MVPs </h3>
-                <p class="card-price">$200.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/PSA 10 SHOHEI OHTANI OTANI 2018 TOPPS 249.webp" alt="PSA 10 SHOHEI OHTANI OTANI 2018 TOPPS " class="card-image">
-                <h3 class="card-title">PSA 10 SHOHEI OHTANI OTANI 2018 TOPPS </h3>
-                <p class="card-price">$249.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/THE TRIPLE! Pele, Lionel Messi, Cristiano Ronaldo 2022 Leaf Legends Card PGI 10 300.webp" alt="THE TRIPLE! Pele, Lionel Messi, Cristiano Ronaldo 2022 Leaf Legends Card PGI 10 " class="card-image">
-                <h3 class="card-title">THE TRIPLE! Pele, Lionel Messi, Cristiano Ronaldo 2022 Leaf Legends Card PGI 10 </h3>
-                <p class="card-price">$300.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-            <div class="card-product">
-                <img src="/Images/Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs 254.webp" alt="Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs " class="card-image">
-                <h3 class="card-title">Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs </h3>
-                <p class="card-price">$254.99</p>
-                <button class="add-to-cart">Add to Cart</button>
-            </div>
-
+<div id="products">
+    <div class="card-list" id="product-list">
+        <!-- Existing Products -->
+        <div class="card-product">
+            <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
+            <h3 class="card-title">Cristiano Ronaldo</h3>
+            <p class="card-price">$49.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="1"
+                    data-name="Cristiano Ronaldo"
+                    data-price="49.99"
+                    data-image="/Images/Cristiano Ronaldo.jpg">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/Messi.jpg" alt="Lionel Messi" class="card-image">
+            <h3 class="card-title">Lionel Messi</h3>
+            <p class="card-price">$69.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="2"
+                    data-name="Lionel Messi"
+                    data-price="69.99"
+                    data-image="/Images/Messi.jpg">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/jrodriguez.jpg" alt="James Rodriguez" class="card-image">
+            <h3 class="card-title">James Rodriguez</h3>
+            <p class="card-price">$20.56</p>
+            <button
+                    class="add-to-cart"
+                    data-id="3"
+                    data-name="James Rodriguez"
+                    data-price="20.56"
+                    data-image="/Images/jrodriguez.jpg">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/Kobe-Bryant-1996.webp" alt="Kobe Bryant" class="card-image">
+            <h3 class="card-title">Kobe Bryant</h3>
+            <p class="card-price">$599.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="4"
+                    data-name="Kobe Bryant"
+                    data-price="599.99"
+                    data-image="/Images/Kobe-Bryant-1996.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/Michael-Jordan.webp" alt="Michael Jordan" class="card-image">
+            <h3 class="card-title">Michael Jordan</h3>
+            <p class="card-price">$150.53</p>
+            <button
+                    class="add-to-cart"
+                    data-id="5"
+                    data-name="Michael Jordan"
+                    data-price="150.53"
+                    data-image="/Images/Michael-Jordan.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/mahomes.jpg" alt="Patrick Mahomes" class="card-image">
+            <h3 class="card-title">Patrick Mahomes</h3>
+            <p class="card-price">$59.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="6"
+                    data-name="Patrick Mahomes"
+                    data-price="59.99"
+                    data-image="/Images/mahomes.jpg">
+                Add to Cart
+            </button>
         </div>
 
-    <footer>
-        <div class="footer-container">
-            <div class="about-us">
-                <h3>About Us</h3>
-                <p>Welcome to Card Haven, the ultimate destination for sports collectible cards. Explore a wide range of
-                    premium cards from top players worldwide!</p>
-            </div>
-            <div class="social-links">
-                <h3>Follow Us</h3>
-                <ul>
-                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                    <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                    <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-            </div>
-    </footer>
+        <!-- New Products from Updated File -->
+        <div class="card-product">
+            <img src="/Images/Neymar.jpg" alt="Neymar Jr" class="card-image">
+            <h3 class="card-title">Neymar Jr</h3>
+            <p class="card-price">$129.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="7"
+                    data-name="Neymar Jr"
+                    data-price="129.99"
+                    data-image="/Images/Neymar.jpg">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/LeBron-James.jpg" alt="LeBron James" class="card-image">
+            <h3 class="card-title">LeBron James</h3>
+            <p class="card-price">$89.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="8"
+                    data-name="LeBron James"
+                    data-price="89.99"
+                    data-image="/Images/LeBron-James.jpg">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/Steph-Curry.jpg" alt="Steph Curry" class="card-image">
+            <h3 class="card-title">Steph Curry</h3>
+            <p class="card-price">$109.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="9"
+                    data-name="Steph Curry"
+                    data-price="109.99"
+                    data-image="/Images/Steph-Curry.jpg">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</div>
 
+<footer>
+    <div class="footer-container">
+        <div class="about-us">
+            <h3>About Us</h3>
+            <p>Welcome to Card Haven, the ultimate destination for sports collectible cards. Explore a wide range of premium cards from top players worldwide!</p>
+        </div>
+        <div class="social-links">
+            <h3>Follow Us</h3>
+            <ul>
+                <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </body>
-
 </html>
