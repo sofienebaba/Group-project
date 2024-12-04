@@ -165,9 +165,12 @@ body {
     flex-direction: row;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    gap: 1.5em;
+    gap: 1.5em; /* Space between the products */
     margin: 3em 0;
-    padding: 0 1em;
+    padding: 1.5em; /* Same padding as the gap between the cards */
+    border: 2px solid #ddd; /* Border around the container */
+    border-radius: 10px; /* Optional: rounded corners */
+    background-color: #f9f9f9; /* Optional: background color inside the border */
 }
 
 .card {
@@ -221,19 +224,32 @@ body {
 
 .see-more-container {
     text-align: center;
-    margin-top: 2em;
 }
 
 .see-more-button {
     text-decoration: none;
     background-color: #134268;
     color: white;
-    padding: 0.75em 1.5em;
+    padding: 1em 2em;  
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1em;  /* Increased font size */
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
     transition: background-color 0.3s ease, transform 0.2s;
+    display: inline-block; 
+}
+
+.see-more-button:hover {
+    background-color: #0f3550;
+    transform: scale(1.05);
+}
+
+.see-more-container.fixed-position {
+    position: fixed;
+    bottom: 2em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; 
 }
 
 .see-more-button:hover {
