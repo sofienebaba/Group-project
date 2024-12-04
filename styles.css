@@ -159,18 +159,19 @@ body {
     background-color: #cc5200;
     transform: scale(1.05); 
 }
-/* Cards Section Styling */
+
+
 .cards-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-    gap: 1.5em; /* Space between the products */
+    gap: 1.5em; 
     margin: 3em 0;
-    padding: 1.5em; /* Same padding as the gap between the cards */
-    border: 2px solid #ddd; /* Border around the container */
-    border-radius: 10px; /* Optional: rounded corners */
-    background-color: #f9f9f9; /* Optional: background color inside the border */
+    padding: 1.5em; 
+    border: 2px solid #ddd; 
+    border-radius: 10px; 
+    background-color: #f9f9f9; 
 }
 
 .card {

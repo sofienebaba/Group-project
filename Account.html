@@ -59,18 +59,18 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Sign In</h2>
-                <form action="#" method="POST">
+                <form id="signInForm" action="#" method="POST">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Enter your username" required>
-
+        
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
+        
                     <button type="submit" class="submit-button">Sign In</button>
                 </form>
             </div>
         </div>
-    </main>
+            </main>
 
     <footer>
         <div class="footer-container">
@@ -104,6 +104,7 @@
         const signInLink = document.getElementById('signInLink');
         const modal = document.getElementById('signInModal');
         const closeModal = document.querySelector('.close');
+        const signInForm = document.getElementById('signInForm');
 
         signInLink.addEventListener('click', (event) => {
             event.preventDefault(); 
@@ -121,6 +122,10 @@
                 modal.style.display = 'none';
             }
         });
+        signInForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.location.href = 'settings.html';
+    });
 
     </script>
 </body>
