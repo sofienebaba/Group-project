@@ -1004,3 +1004,20 @@ input[type=number] {
     background-color: #cc5200;
     cursor: pointer;
 }
+/* Shopping Cart Icon Styling */
+.cart-icon {
+    width: 30px;
+    height: auto;
+    vertical-align: middle;
+    margin-left: 15px;
+    margin-right: 10px;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
