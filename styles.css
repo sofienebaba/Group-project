@@ -1021,3 +1021,24 @@ input[type=number] {
     opacity: 0.8;
 }
 
+/* Cart Badge Styling */
+.cart-badge {
+    position: absolute;
+    top: 23px;
+    right: 23px;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.1em 0.4em;
+    line-height: 1;
+    text-align: center;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translate(25%, -25%);
+}

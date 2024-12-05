@@ -88,3 +88,46 @@ document.addEventListener("DOMContentLoaded", function () {
         checkoutContainer.appendChild(totalItem);
     }
 });
+
+// Function to update the cart count badge
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = cart.length; // Get the number of items in the cart
+    const cartBadge = document.getElementById("cart-count");
+
+    // Update the badge text
+    cartBadge.textContent = cartCount;
+
+    // Hide the badge if the cart is empty
+    if (cartCount === 0) {
+        cartBadge.style.display = "none";
+    } else {
+        cartBadge.style.display = "flex";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount(); // Update the count on page load
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Add to Cart Button Logic
+    document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", function () {
+            const product = {
+                id: this.getAttribute("data-id"),
+                name: this.getAttribute("data-name"),
+                price: this.getAttribute("data-price"),
+                image: this.getAttribute("data-image"),
+            };
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Show popup
+            showPopup(`${product.name} has been added to your cart!`);
+
+            // Update the cart count badge globally
+            updateCartCount();
+        });
+    });
+});
