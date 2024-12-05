@@ -131,3 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+document.getElementById('checkout-pay-now').addEventListener('click', function() {
+    document.getElementById('payment-modal').style.display = 'block';
+});
+
+var modal = document.getElementById('payment-modal');
+var closeButton = document.getElementsByClassName('close')[0];
+
+closeButton.onclick = function() {
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
