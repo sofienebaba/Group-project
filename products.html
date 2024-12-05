@@ -41,6 +41,43 @@
 </header>
 
 <div id="products">
+
+    <nav class="sidenav" id="products-nav">
+        <h2>Filters</h2>
+        <form id="filter-form">
+
+            <h3>Sport</h3>
+            <input type="checkbox" id="soccer" name="soccer" value="soccer">
+            <label for="soccer"> Soccer</label><br>
+            <input type="checkbox" id="basketball" name="basketball" value="basketball">
+            <label for="basketball"> Basketball</label><br>
+            <input type="checkbox" id="baseball" name="baseball" value="baseball">
+            <label for="baseball"> Baseball</label><br>
+            <input type="checkbox" id="football" name="football" value="football">
+            <label for="football"> Football</label><br>
+
+            <h3>Condition</h3>
+            <input type="checkbox" id="mint" name="mint" value="mint">
+            <label for="mint"> Mint</label><br>
+            <input type="checkbox" id="excellent" name="excellent" value="excellent">
+            <label for="excellent"> Excellent</label><br>
+            <input type="checkbox" id="good" name="good" value="good">
+            <label for="good"> Good</label><br>
+            <input type="checkbox" id="fair" name="fair" value="fair">
+            <label for="fair"> Fair</label><br>
+            <input type="checkbox" id="poor" name="poor" value="poor">
+            <label for="poor"> Poor</label><br>
+
+            <h3>Price</h3>
+            <label for="min-value-price"> Min Price: </label>
+            <input type="number" id="min-value-price" name="min-value-price"> <br>
+            <label for="max-value-price"> Max Price: </label>
+            <input type="number" id="max-value-price" name="max-value-price">
+            <input type="submit" value="Search Filters" class="filter-button">
+            <input type="reset" value="Reset Filters" class="filter-button">
+        </form>
+    </nav>
+
     <div class="card-list" id="product-list">
         <!-- Existing Products -->
         <div class="card-product">
@@ -159,6 +196,85 @@
                     data-name="Steph Curry"
                     data-price="109.99"
                     data-image="/Images/Steph-Curry.jpg">
+                Add to Cart
+            </button>
+        </div>
+        <!-- start here -->
+        <div class="card-product">
+            <img src="/Images/WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD 155.webp" alt="Zion Williamson" class="card-image">
+            <h3 class="card-title">Zion Williamson</h3>
+            <p class="card-price">$139.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="10"
+                    data-name="Zion Williamson"
+                    data-price="139.99"
+                    data-image="/Images/WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD 155.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/2023 Topps Chrome UCL Erling Haaland Specimen 398.webp" alt="Erling Haaland" class="card-image">
+            <h3 class="card-title">Erling Haaland</h3>
+            <p class="card-price">$79.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="11"
+                    data-name="Erling Haaland"
+                    data-price="79.99"
+                    data-image="/Images/2023 Topps Chrome UCL Erling Haaland Specimen 398.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/2024 Topps Now SHOHEI OHTANI.webp" alt="Shohei Ohtani" class="card-image">
+            <h3 class="card-title">Shohei Ohtani</h3>
+            <p class="card-price">$209.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="12"
+                    data-name="Shohei Ohtani"
+                    data-price="209.99"
+                    data-image="/Images/2024 Topps Now SHOHEI OHTANI.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/KYLIAN MBAPPE 1ST REAL MADRID CARD%20 60.webp" alt="Kylian Mbappe" class="card-image">
+            <h3 class="card-title">Kylian Mbappe</h3>
+            <p class="card-price">$99.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="13"
+                    data-name="Kylian Mbappe"
+                    data-price="99.99"
+                    data-image="/Images/KYLIAN MBAPPE 1ST REAL MADRID CARD%20 60.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs 254.webp" alt="Victor Wembanyama" class="card-image">
+            <h3 class="card-title">Victor Wembanyama</h3>
+            <p class="card-price">$129.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="14"
+                    data-name="Victor Wembanyama"
+                    data-price="129.99"
+                    data-image="/Images/Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs 254.webp">
+                Add to Cart
+            </button>
+        </div>
+        <div class="card-product">
+            <img src="/Images/stroud.jpg" alt="C. J. Stroud" class="card-image">
+            <h3 class="card-title">C. J. Stroud</h3>
+            <p class="card-price">$159.99</p>
+            <button
+                    class="add-to-cart"
+                    data-id="15"
+                    data-name="C. J. Stroud"
+                    data-price="159.99"
+                    data-image="/Images/stroud.jpg">
                 Add to Cart
             </button>
         </div>
