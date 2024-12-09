@@ -1200,8 +1200,23 @@ input[type=number] {
     z-index: 10;
 }
 
+/* Close Button Styling */
+.close-ad {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: red;
+}
+
 .ad {
-    margin-bottom: 15px;  
+    position: relative; /* To position the close button inside the ad */
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .ad-image {

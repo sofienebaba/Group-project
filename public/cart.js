@@ -148,3 +148,7 @@ window.onclick = function(event) {
     }
 }
 
+function closeAd(button) {
+    const ad = button.parentElement; 
+    ad.style.display = "none"; 
+}
