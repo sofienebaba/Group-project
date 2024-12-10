@@ -162,6 +162,7 @@ body {
 
 
 .cards-container {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  
     gap: 1.5em;
@@ -232,7 +233,11 @@ body {
 }
 
 .see-more-container {
-    text-align: center;
+    position: absolute; /* Absolutely position the button relative to .cards-container */
+    top: 10px;  /* Adjust from the top */
+    right: 10px;  /* Align to the top right of the container */
+    z-index: 10;  /* Ensure it's above other content */
+
 }
 
 .see-more-button {

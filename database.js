@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-// Open a database (it will create the file if it doesn't exist)
+// Open a database 
 const db = new sqlite3.Database('./ecommerce.db', (err) => {
   if (err) {
     console.error('Error opening the database:', err.message);
@@ -9,7 +9,7 @@ const db = new sqlite3.Database('./ecommerce.db', (err) => {
   }
 });
 
-// Create a table for products (if it doesn't already exist)
+// Create a table for products 
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS products (
@@ -23,5 +23,4 @@ db.serialize(() => {
   `);
 });
 
-// Export the database connection
 module.exports = db;

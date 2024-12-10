@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to update the cart count badge
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartCount = cart.length; // Get the number of items in the cart
+    const cartCount = cart.length; 
     const cartBadge = document.getElementById("cart-count");
 
     // Update the badge text

@@ -4,14 +4,13 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-// Serve static files from the 'public' directory
+
 app.use(express.static(path.join(__dirname, 'public')));
-// Serve static files from the 'images' directory (outside 'public')
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
 
-// Routes for specific HTML pages (only needed if you want custom routes)
 app.get('/index', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
