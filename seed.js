@@ -17,6 +17,10 @@ const products = [
 
 // Insert products into the database
 const seedDatabase = () => {
+  const deleteStmt = db.prepare("DELETE FROM products");
+  deleteStmt.run();
+  deleteStmt.finalize();
+
   const stmt = db.prepare("INSERT INTO products (name, price, category, condition, image) VALUES (?, ?, ?, ?, ?)");
 
   products.forEach(product => {

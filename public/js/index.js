@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const container = document.querySelector('.cards-container');
   
       // Limit to only the first 8 products
-      const limitedProducts = products.slice(7, 15);
+      const limitedProducts = products.slice(5, 11);
 
       // Loop through the limited products and create HTML for each one
       limitedProducts.forEach(product => {
