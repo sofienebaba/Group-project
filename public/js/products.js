@@ -4,13 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())  // Parse the JSON response
     .then(products => {
       // Get the container element where products will be displayed
-      const container = document.querySelector('.cards-container');
+      const container = document.querySelector('.card-list');
   
-      // Limit to only the first 8 products
-      const limitedProducts = products.slice(7, 15);
-
-      // Loop through the limited products and create HTML for each one
-      limitedProducts.forEach(product => {
+      // Loop through all products and create HTML for each one
+      products.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('card'); // Add the card class for styling
         

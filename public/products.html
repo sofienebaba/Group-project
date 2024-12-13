@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Collectible Cards</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="js/products.js"></script>
     <script defer src="js/cart.js"></script>
+
+    
 </head>
 
 <body>
@@ -79,205 +82,9 @@
     </nav>
 
     <div class="card-list" id="product-list">
-        <!-- Existing Products -->
-        <div class="card-product">
-            <img src="/Images/Cristiano Ronaldo.jpg" alt="Cristiano Ronaldo" class="card-image">
-            <h3 class="card-title">Cristiano Ronaldo</h3>
-            <p class="card-price">$49.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="1"
-                    data-name="Cristiano Ronaldo"
-                    data-price="49.99"
-                    data-image="/Images/Cristiano Ronaldo.jpg">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/Messi.jpg" alt="Lionel Messi" class="card-image">
-            <h3 class="card-title">Lionel Messi</h3>
-            <p class="card-price">$69.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="2"
-                    data-name="Lionel Messi"
-                    data-price="69.99"
-                    data-image="/Images/Messi.jpg">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/jrodriguez.jpg" alt="James Rodriguez" class="card-image">
-            <h3 class="card-title">James Rodriguez</h3>
-            <p class="card-price">$20.56</p>
-            <button
-                    class="add-to-cart"
-                    data-id="3"
-                    data-name="James Rodriguez"
-                    data-price="20.56"
-                    data-image="/Images/jrodriguez.jpg">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/Kobe-Bryant-1996.webp" alt="Kobe Bryant" class="card-image">
-            <h3 class="card-title">Kobe Bryant</h3>
-            <p class="card-price">$599.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="4"
-                    data-name="Kobe Bryant"
-                    data-price="599.99"
-                    data-image="/Images/Kobe-Bryant-1996.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/Michael-Jordan.webp" alt="Michael Jordan" class="card-image">
-            <h3 class="card-title">Michael Jordan</h3>
-            <p class="card-price">$150.53</p>
-            <button
-                    class="add-to-cart"
-                    data-id="5"
-                    data-name="Michael Jordan"
-                    data-price="150.53"
-                    data-image="/Images/Michael-Jordan.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/mahomes.jpg" alt="Patrick Mahomes" class="card-image">
-            <h3 class="card-title">Patrick Mahomes</h3>
-            <p class="card-price">$59.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="6"
-                    data-name="Patrick Mahomes"
-                    data-price="59.99"
-                    data-image="/Images/mahomes.jpg">
-                Add to Cart
-            </button>
-        </div>
-
-        <div class="card-product">
-            <img src="/Images/2019-20 ZION WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD 155.webp" alt="ZION WILLIAMSON" class="card-image">
-            <h3 class="card-title">ZION WILLIAMSON</h3>
-            <p class="card-price">$155.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="7"
-                    data-name="ZION WILLIAMSON"
-                    data-price="129.99"
-                    data-image="/Images/2019-20 ZION WILLIAMSON PANINI SILVER PRIZM ROOKIE CARD 155.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/2024 Topps Now MLS 128 Lionel Messi, Stephen Curry 50.webp" alt="Lionel Messi, Stephen Curry" class="card-image">
-            <h3 class="card-title">Lionel Messi, Stephen Curry</h3>
-            <p class="card-price">$89.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="8"
-                    data-name="Lionel Messi, Stephen Curry"
-                    data-price="89.99"
-                    data-image="/Images/2024 Topps Now MLS 128 Lionel Messi, Stephen Curry 50.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/THE TRIPLE! Pele, Lionel Messi, Cristiano Ronaldo 2022 Leaf Legends Card PGI 10 300.webp" alt="Pele, Lionel Messi, Cristiano" class="card-image">
-            <h3 class="card-title">Pele, Lionel Messi, Cristiano</h3>
-            <p class="card-price">$400.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="9"
-                    data-name="Pele, Lionel Messi, Cristiano"
-                    data-price="109.99"
-                    data-image="/Images/THE TRIPLE! Pele, Lionel Messi, Cristiano Ronaldo 2022 Leaf Legends Card PGI 10 300.webp">
-                Add to Cart
-            </button>
-        </div>
-
-        <div class="card-product">
-            <img src="/Images/sterling.jpg" alt="sterling" class="card-image">
-            <h3 class="card-title">sterling</h3>
-            <p class="card-price">$39.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="10"
-                    data-name="sterling"
-                    data-price="139.99"
-                    data-image="/Images/sterling.jpg">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/2023 Topps Chrome UCL Erling Haaland Specimen 398.webp" alt="Erling Haaland" class="card-image">
-            <h3 class="card-title">Erling Haaland</h3>
-            <p class="card-price">$79.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="11"
-                    data-name="Erling Haaland"
-                    data-price="79.99"
-                    data-image="/Images/2023 Topps Chrome UCL Erling Haaland Specimen 398.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/2024 Topps Now SHOHEI OHTANI.webp" alt="Shohei Ohtani" class="card-image">
-            <h3 class="card-title">Shohei Ohtani</h3>
-            <p class="card-price">$209.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="12"
-                    data-name="Shohei Ohtani"
-                    data-price="209.99"
-                    data-image="/Images/2024 Topps Now SHOHEI OHTANI.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/KYLIAN MBAPPE 1ST REAL MADRID CARD%20 60.webp" alt="Kylian Mbappe" class="card-image">
-            <h3 class="card-title">Kylian Mbappe</h3>
-            <p class="card-price">$99.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="13"
-                    data-name="Kylian Mbappe"
-                    data-price="99.99"
-                    data-image="/Images/KYLIAN MBAPPE 1ST REAL MADRID CARD%20 60.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs 254.webp" alt="Victor Wembanyama" class="card-image">
-            <h3 class="card-title">Victor Wembanyama</h3>
-            <p class="card-price">$129.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="14"
-                    data-name="Victor Wembanyama"
-                    data-price="129.99"
-                    data-image="/Images/Victor Wembanyama 2023 Panini Select Blue Parallel Rookie Card PSA 10 Spurs 254.webp">
-                Add to Cart
-            </button>
-        </div>
-        <div class="card-product">
-            <img src="/Images/stroud.jpg" alt="C. J. Stroud" class="card-image">
-            <h3 class="card-title">C. J. Stroud</h3>
-            <p class="card-price">$159.99</p>
-            <button
-                    class="add-to-cart"
-                    data-id="15"
-                    data-name="C. J. Stroud"
-                    data-price="159.99"
-                    data-image="/Images/stroud.jpg">
-                Add to Cart
-            </button>
-        </div>
+        <!-- Product cards will be dynamically populated -->
     </div>
+
 </div>
 
 <footer>
@@ -327,5 +134,6 @@
         </div>
     </div>
 </footer>
+
 </body>
 </html>
