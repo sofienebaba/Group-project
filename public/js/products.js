@@ -34,3 +34,11 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error("Error fetching products:", error);
     });
 });
+
+const filterForm = document.getElementById("filter-form");
+filterForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  
+  const formData = new FormData(filterForm);
+  console.log(formData);
+});
