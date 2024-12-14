@@ -1,144 +1,136 @@
-const express = require('express');
-const path = require('path');
-const sqlite3 = require('sqlite3').verbose(); // Assuming you use SQLite
-const app = express();
-const PORT = 3000;
-
-
-
-// Database connection (use the correct path for your database)
-const db = new sqlite3.Database('./database'); // Or another DB path
-
-// Serve static files from the "public" and "images" folders
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
-
-// Route for the homepage
-app.get('/index', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Route for the about us page
-app.get('/about_us_faq', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'about_us_faq.html'));
-});
-
-// Route for the cart page
-app.get('/cart', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'cart.html'));
-});
-
-// Route for the checkout page
-app.get('/checkout', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
-});
-
-// Route for the products page
-app.get('/products', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'products.html'));
-});
-
-// Route for the account page
-app.get('/account', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'Account.html'));
-});
-
-// Route for the settings page
-app.get('/settings', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'settings.html'));
-});
-
-// API Endpoint to fetch all products from the database
+// Fetch products (for your frontend)
 app.get('/api/products', (req, res) => {
-  // Query the database to get all products
   db.all('SELECT * FROM products', (err, rows) => {
     if (err) {
-      res.status(500).json({ error: 'Database error' });
-      return;
+      res.status(500).send('Error fetching products');
+    } else {
+      res.json(rows);
     }
-    res.json(rows); // Send products as a JSON response
   });
 });
 
+// Add product to cart
+app.post('/api/cart', (req, res) => {
+  const { user_id, product_id, quantity } = req.body;
 
-
-const bcrypt = require('bcrypt');
-const bodyParser = require('body-parser');
-app.use(bodyParser.json()); // Parse JSON bodies
-
-
-app.post('/api/signup', (req, res) => {
-  const { username, email, password, dob } = req.body;
-
-  // Check for missing fields
-  if (!username || !email || !password || !dob) {
-    return res.status(400).json({ error: "All fields are required" });
+  if (!user_id || !product_id || !quantity) {
+    return res.status(400).send('Missing user_id, product_id, or quantity');
   }
 
-  // Hash the password
-  bcrypt.hash(password, 10, (err, hashedPassword) => {
-    if (err) {
-      return res.status(500).json({ error: "Error hashing password" });
-    }
-
-    // Insert user into the database
-    const stmt = db.prepare("INSERT INTO users (username, email, password, dob) VALUES (?, ?, ?, ?)");
-    stmt.run(username, email, hashedPassword, dob, (err) => {
+  db.get(
+    `SELECT id, quantity FROM cart WHERE user_id = ? AND product_id = ?`,
+    [user_id, product_id],
+    (err, row) => {
       if (err) {
-        if (err.message.includes("UNIQUE constraint failed")) {
-          return res.status(409).json({ error: "Email already registered" });
-        }
-        return res.status(500).json({ error: "Error creating user" });
+        res.status(500).send('Error checking cart');
+      } else if (row) {
+        // If product is already in cart, update the quantity
+        const newQuantity = row.quantity + quantity;
+        db.run(
+          `UPDATE cart SET quantity = ? WHERE id = ?`,
+          [newQuantity, row.id],
+          (err) => {
+            if (err) {
+              res.status(500).send('Error updating cart');
+            } else {
+              res.send('Cart updated successfully');
+            }
+          }
+        );
+      } else {
+        // Add the product to the cart
+        db.run(
+          `INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)`,
+          [user_id, product_id, quantity],
+          (err) => {
+            if (err) {
+              res.status(500).send('Error adding to cart');
+            } else {
+              res.send('Product added to cart successfully');
+            }
+          }
+        );
       }
-      res.status(201).json({ message: "User registered successfully" });
-    });
-    stmt.finalize();
+    }
+  );
+});
+
+// Fetch cart items for a user
+app.get('/api/cart/:user_id', (req, res) => {
+  const user_id = req.params.user_id;
+
+  db.all(
+    `
+    SELECT 
+      cart.id AS cart_id, 
+      products.id AS product_id, 
+      products.name, 
+      products.price, 
+      products.image, 
+      cart.quantity
+    FROM cart
+    JOIN products ON cart.product_id = products.id
+    WHERE cart.user_id = ?
+    `,
+    [user_id],
+    (err, rows) => {
+      if (err) {
+        res.status(500).send('Error fetching cart items');
+      } else {
+        res.json(rows);
+      }
+    }
+  );
+});
+
+// Remove a product from cart
+app.delete('/api/cart/:cart_id', (req, res) => {
+  const cart_id = req.params.cart_id;
+
+  db.run(`DELETE FROM cart WHERE id = ?`, [cart_id], (err) => {
+    if (err) {
+      res.status(500).send('Error removing item from cart');
+    } else {
+      res.send('Item removed from cart');
+    }
   });
 });
 
-app.post('/api/signin', (req, res) => {
-  const { email, password } = req.body;
+// Update quantity of a product in cart
+app.put('/api/cart/:cart_id', (req, res) => {
+  const { quantity } = req.body;
+  const cart_id = req.params.cart_id;
 
-  // Check for missing fields
-  if (!email || !password) {
-    return res.status(400).json({ error: "Both email and password are required" });
+  if (!quantity) {
+    return res.status(400).send('Quantity is required');
   }
 
-  // Look for the user in the database by email
-  const query = "SELECT * FROM users WHERE email = ?";
-  db.get(query, [email], (err, user) => {
-    if (err) {
-      return res.status(500).json({ error: "Database error" });
-    }
-
-    if (!user) {
-      // If the email does not exist in the database, the user is not registered
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    // If user exists, compare the entered password with the hashed password in the database
-    bcrypt.compare(password, user.password, (err, isMatch) => {
+  db.run(
+    `UPDATE cart SET quantity = ? WHERE id = ?`,
+    [quantity, cart_id],
+    (err) => {
       if (err) {
-        return res.status(500).json({ error: "Error comparing passwords" });
+        res.status(500).send('Error updating cart item');
+      } else {
+        res.send('Cart item updated successfully');
       }
-
-      if (!isMatch) {
-        // If passwords do not match
-        return res.status(401).json({ error: "Invalid credentials" });
-      }
-
-      // If both email and password are correct, proceed with sign-in
-      res.status(200).json({ message: "Login successful", user: { id: user.id, username: user.username, email: user.email } });
-    });
-  });
+    }
+  );
 });
 
+// Get the count of items in the cart for a user
+app.get('/api/cart/count/:user_id', (req, res) => {
+  const user_id = req.params.user_id;
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+  db.get(
+    `SELECT SUM(quantity) AS count FROM cart WHERE user_id = ?`,
+    [user_id],
+    (err, row) => {
+      if (err) {
+        res.status(500).send('Error fetching cart count');
+      } else {
+        res.json({ count: row.count || 0 });
+      }
+    }
+  );
 });
-
-
-
-
