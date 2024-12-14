@@ -23,4 +23,25 @@ db.serialize(() => {
   `);
 });
 
+
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      password TEXT NOT NULL,
+      dob TEXT NOT NULL
+    )
+  `, (err) => {
+    if (err) {
+      console.error("Error creating users table:", err.message);
+    } else {
+      console.log("Users table created successfully.");
+    }
+  });
+});
+
+
+
 module.exports = db;

@@ -1249,3 +1249,15 @@ input[type=number] {
     text-decoration: underline;
 }
 
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.show-hide-btn {
+    position: absolute;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
