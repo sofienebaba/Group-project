@@ -73,7 +73,6 @@ filterForm.addEventListener("submit", function (event) {
         // Clear existing products
         const container = document.querySelector('.card-list');
         container.innerHTML = '';
-
         // Display filtered products
         products.forEach(product => {
             // Your existing card creation code
