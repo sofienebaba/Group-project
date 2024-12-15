@@ -20,7 +20,14 @@ db.serialize(() => {
       condition TEXT NOT NULL,
       image TEXT NOT NULL
     )
-  `);
+  `, (err) => {
+    if (err) {
+      console.error("Error creating products table:", err.message);
+    } else {
+      console.log("products table created successfully.");
+    }
+  }
+);
 });
 
 

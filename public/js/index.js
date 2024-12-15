@@ -37,3 +37,19 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error("Error fetching products:", error);
     });
 });
+// Function to close the sidebar (either left or right)
+function closeAd(button) {
+  // Find the parent 'aside' element (either left-sidebar or right-sidebar)
+  const sidebar = button.closest('aside');
+  
+  // Hide the sidebar by setting its display to 'none'
+  sidebar.style.display = 'none';
+}
+
+// Add event listener to close buttons
+document.querySelectorAll('.close-ad').forEach(button => {
+  button.addEventListener('click', function(event) {
+      event.stopPropagation();  // Prevent other actions
+      closeAd(button);  // Close the sidebar
+  });
+});

@@ -134,3 +134,84 @@ app.get('/api/cart/count/:user_id', (req, res) => {
     }
   );
 });
+
+const bcrypt = require('bcrypt');
+
+// Sign Up (Create New User)
+app.post('/api/signup', (req, res) => {
+  const { username, email, dob, password } = req.body;
+
+  if (!username || !email || !password || !dob) {
+    return res.status(400).send('Missing required fields');
+  }
+
+      // Check if email already exists
+      db.get('SELECT * FROM users WHERE email = ?', [email], (err, existingUser) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+
+        if (existingUser) {
+            return res.status(400).json({ error: 'Email already exists' });
+        }
+
+  // Hash the password before saving to database
+  bcrypt.hash(password, 10, (err, hashedPassword) => {
+    if (err) {
+      console.error('Error hashing password:', err);
+      return res.status(500).send('Server error');
+    }
+
+    // Insert the new user into the database
+    db.run(
+      `INSERT INTO users (username, email, dob, password ) VALUES (?, ?, ?, ?)`,
+      [username, email, dob, hashedPassword],
+      function(err) {
+        if (err) {
+          console.error('Error creating user:', err.message);
+          return res.status(500).send('Error creating user');
+        } else {
+          res.status(201).send('User created successfully');
+        }
+      }
+    );
+  });
+});
+
+// Sign In (Authenticate User)
+app.post('/api/signin', (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).send('Email and password are required');
+  }
+
+  // Find the user by email
+  db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, row) => {
+    if (err) {
+      console.error('Error fetching user:', err);
+      return res.status(500).send('Server error');
+    }
+
+    if (!row) {
+      return res.status(404).send('User not found');
+    }
+
+    // Compare the plain-text password with the hashed password
+    bcrypt.compare(password, row.password, (err, isMatch) => {
+      if (err) {
+        console.error('Error comparing passwords:', err);
+        return res.status(500).send('Server error');
+      }
+
+      if (!isMatch) {
+        return res.status(400).send('Invalid password');
+      }
+
+      // Successful login
+      res.send('Login successful');
+    });
+  });
+});
+

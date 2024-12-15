@@ -43,3 +43,84 @@ modal.style.display = 'block'; // Display sign-in modal
             passwordField.type = type;
         });
     });
+
+    // When the Sign-Up form is submitted
+document.querySelector('.sign-up-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get form data
+    const fullName = document.getElementById('fullname').value;
+    const email = document.getElementById('Email').value;
+    const dob = document.getElementById('dob').value;
+    const password = document.getElementById('password').value;
+
+    // Create data object for the request
+    const formData = {
+        username: fullName,
+        email: email,
+        dob: dob,
+        password: password,
+
+    };
+
+    try {
+        // Send POST request to create a new user
+        const response = await fetch('http://localhost:3000/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),  // Send the form data
+        });
+
+        // Handle the response
+        const result = await response.json();
+
+        if (response.ok) {
+            alert('Sign Up Successful!');
+            modal.style.display = 'block';  // Show the sign-in modal after successful sign-up
+        } else {
+            alert(result.error || 'Sign Up Failed!');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong!');
+    }
+});
+signInForm.addEventListener('submit', async (event) => {
+    event.preventDefault();  // Prevent the default form submission
+
+    // Get form data
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Create data object for the request
+    const signInData = {
+        email: email,
+        password: password,
+    };
+
+    try {
+        // Send POST request to sign in
+        const response = await fetch('http://localhost:3000/api/signin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(signInData),  // Send email and password
+        });
+
+        // Handle the response
+        const result = await response.json();
+
+        if (response.ok) {
+            alert('Sign In Successful!');
+            window.location.href = 'settings.html';  // Redirect to another page after successful sign-in
+        } else {
+            alert(result.error || 'Sign In Failed!');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong!');
+    }
+});
