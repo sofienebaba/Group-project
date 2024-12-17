@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then((cartItems) => {
+                const cartId = cartItems.cartId;
                 const orderItems = document.querySelector(".order-items");
                 console.log(orderItems);
                 const cartSummary = document.createElement("div");
@@ -79,6 +80,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const buyButton = document.getElementById("checkout-pay-now");
                 buyButton.addEventListener("click", function () {
                     modal.style.display = "block";
+                    const paymentForm = document.getElementById("payment-form");
+                    paymentForm.addEventListener("submit", function (event) {
+                        event.preventDefault();
+                        fetch('/api/buy_cart/${cartId}', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        })
+                    });
                 });
 
             })
