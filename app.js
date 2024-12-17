@@ -74,24 +74,6 @@ app.post('/api/products/filter', (req, res) => {
     });
 });
 
-app.post('/api/products/search', (req, res) => {
-    const searchTerm = req.body.searchTerm.toLowerCase();
-    console.log(searchTerm);
-    // Use LIKE for partial matches, % means "match anything before or after"
-    const query = "SELECT * FROM products WHERE LOWER(name) LIKE ?";
-    const searchPattern = `%${searchTerm}%`;
-
-
-    db.all(query, [searchPattern], (err, rows) => {
-        if (err) {
-            console.error(err.message);
-            res.status(500).json({ error: "Failed to search products" });
-        } else {
-            res.json(rows);
-        }
-    });
-});
-
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
