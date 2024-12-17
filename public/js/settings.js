@@ -3,10 +3,82 @@ let settingsDiv = document.getElementById("account-info")
 settingsLink.style.color = "#ffcc00"
 settingsDiv.style.display = "block"
 
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('/api/user-info');
+        const userInfo = await response.json();
+
+        if (response.ok) {
+            document.getElementById('user-name').textContent = userInfo.username;
+            document.getElementById('user-email').textContent = userInfo.email;
+            document.getElementById('user-dob').textContent = userInfo.dob;
+        } else {
+            console.error(userInfo.error || 'Failed to fetch user information');
+            alert('Failed to load user information. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error fetching user information:', error);
+        alert('Something went wrong while fetching user information.');
+    }
+});
+
+const nameChangeForm = document.getElementById("name-edit-form")
+
+nameChangeForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const newName = document.getElementById('new-account-name').value;
+    try {
+        const response = await fetch('/api/change-name', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newName }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            window.location.href = 'settings.html';
+        } else {
+            alert(result.error || 'Failed to change name!');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong!');
+    }
+});
+
+const emailChangeForm = document.getElementById("email-edit-form")
+
+emailChangeForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const newEmail = document.getElementById('new-email').value;
+    try {
+        const response = await fetch('/api/change-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newEmail }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            window.location.href = 'settings.html';
+        } else {
+            alert(result.error || 'Failed to change name!');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Something went wrong!');
+    }
+});
+
 const signOutButton = document.getElementById('signout-button'); // Assuming you have a button with this ID
 
 signOutButton.addEventListener('click', async () => {
-    console.log("signing out");
     try {
         const response = await fetch('/api/signout', {
             method: 'POST',

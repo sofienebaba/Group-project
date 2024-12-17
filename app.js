@@ -209,6 +209,70 @@ app.post('/api/signout', (req, res) => {
     });
 });
 
+app.get('/api/user-info', (req, res) => {
+    const userId = req.session.userId; // Get the user ID from the session
+
+    if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    db.get('SELECT username, email, dob FROM users WHERE id = ?', [userId], (err, row) => {
+        if (err) {
+            console.error('Error fetching user info:', err);
+            return res.status(500).json({ error: 'Failed to fetch user info' });
+        }
+
+        if (!row) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(row);
+    });
+});
+
+app.post('/api/change-name', (req, res) => {
+    const { newName } = req.body;
+    const userId = req.session.userId; 
+
+    if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' }); 
+    }
+
+    if (!newName) {
+        return res.status(400).json({ error: 'New name is required' });
+    }
+
+    // Update the user's name in the database
+    db.run(`UPDATE users SET username = ? WHERE id = ?`, [newName, userId], function(err) {
+        if (err) {
+            console.error('Error updating name:', err.message);
+            return res.status(500).json({ error: 'Failed to update name' });
+        }
+        res.json({ message: 'Name updated successfully' });
+    });
+});
+
+app.post('/api/change-email', (req, res) => {
+    const { newEmail } = req.body;
+    const userId = req.session.userId; 
+
+    if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' }); 
+    }
+
+    if (!newEmail) {
+        return res.status(400).json({ error: 'New email is required' });
+    }
+
+    // Update the user's name in the database
+    db.run(`UPDATE users SET email = ? WHERE id = ?`, [newEmail, userId], function(err) {
+        if (err) {
+            console.error('Error updating email:', err.message);
+            return res.status(500).json({ error: 'Failed to update name' });
+        }
+        res.json({ message: 'Email updated successfully' });
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });

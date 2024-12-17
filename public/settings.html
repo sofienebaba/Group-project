@@ -56,7 +56,7 @@
                 <div class="account-info-item">
                     <li>Account Name</li>
                     <section class="settings-section">
-                        <p>Dylan Cordoni</p>
+                        <p id="user-name">Dylan Cordoni</p>
                         <button class="add-to-cart" id="name-edit-button" onclick="openEditInfo('name-edit')">edit</button>
                     </section>
                 </div>
@@ -64,7 +64,7 @@
                 <div class="account-info-item">
                     <li>Email</li>
                     <section class="settings-section">
-                        <p>dylancordoni@gmail.com</p>
+                        <p id="user-email">dylancordoni@gmail.com</p>
                         <button class="add-to-cart" id="email-edit-button" onclick="openEditInfo('email-edit')">edit</button>
                     </section>
                 </div>
@@ -72,15 +72,15 @@
                 <div class="account-info-item">
                     <li>Password</li>
                     <section class="settings-section">
-                        <p>**********</p>
+                        <p id="user-password">**********</p>
                         <button class="add-to-cart" id="pw-edit-button" onclick="openEditInfo('password-edit')">edit</button>
                     </section>
                 </div>
 
                 <div class="account-info-item">
-                    <li>Shipping Address</li>
+                    <li>Date of Birth</li>
                     <section class="settings-section">
-                        <p>some address</p>
+                        <p id="user-dob"></p>
                         <button class="add-to-cart" id="address-edit-button" onclick="openEditInfo('address-edit')">edit</button>
                     </section>
                 </div>
@@ -148,10 +148,10 @@
         <div class="modal-content">
             <span class="close" id="name-close" onclick="closeModal()">&times;</span>
             <h2>Change Account Name</h2>
-            <form>
+            <form id="name-edit-form">
                 <label for="new-account-name">New Account Name</label>
                 <input type="text" id="new-account-name" name="new-account-name" placeholder="John Doe" required>
-                <button type="button" id="confirm-change-button" class="pay-now-button" onclick="saveChanges()">Save Changes</button>
+                <button type="submit" id="confirm-change-button" class="pay-now-button">Save Changes</button>
             </form>
         </div>
     </div>
@@ -160,10 +160,10 @@
         <div class="modal-content">
             <span class="close" id="email-close" onclick="closeModal()">&times;</span>
             <h2>Change Email Address</h2>
-            <form>
+            <form id="email-edit-form">
                 <label for="new-email">New Email</label>
                 <input type="text" id="new-email" name="new-email" placeholder="JohnDoe@gmail.com" required>
-                <button type="button" id="confirm-change-button" class="pay-now-button" onclick="saveChanges()">Save Changes</button>
+                <button type="submit" id="confirm-change-button" class="pay-now-button" >Save Changes</button>
             </form>
         </div>
     </div>
