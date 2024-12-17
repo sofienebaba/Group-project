@@ -77,7 +77,7 @@ signInForm.addEventListener('submit', async (event) => {
 
     // Get form data
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('si-password').value;
 
     // Create data object for the request
     const signInData = {

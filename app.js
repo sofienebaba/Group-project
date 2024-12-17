@@ -146,11 +146,10 @@ app.post('/api/signup', (req, res) => {
 
 app.post('/api/signin', (req, res) => {
     const { email, password } = req.body;
-  
     if (!email || !password) {
       return res.status(400).send('Email and password are required');
     }
-  
+
     // Find the user by email
     db.get(`SELECT * FROM users WHERE email = ?`, [email], (err, row) => {
       if (err) {
@@ -161,7 +160,6 @@ app.post('/api/signin', (req, res) => {
       if (!row) {
         return res.status(404).send('User not found');
       }
-  
       // Compare the plain-text password with the hashed password
       bcrypt.compare(password, row.password, (err, isMatch) => {
         if (err) {
@@ -172,8 +170,8 @@ app.post('/api/signin', (req, res) => {
         if (!isMatch) {
           return res.status(400).send('Invalid password');
         }
-  
         // Successful login
+        req.session.userId = row.id;
         res.send('Login successful');
       });
     });
@@ -198,6 +196,17 @@ app.get('/api/check-auth', (req, res) => {
     } else {
         res.json({ loggedIn: false });
     }
+});
+
+app.post('/api/signout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).json({ error: 'Failed to log out' });
+        }
+        // Successfully logged out
+        res.json({ message: 'Logged out successfully' });
+    });
 });
 
 app.listen(PORT, () => {

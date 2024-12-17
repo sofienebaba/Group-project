@@ -17,7 +17,6 @@ accountLink.addEventListener('click', async (event) => {
         }
     } catch (error) {
         console.error('Error checking authentication:', error);
-        // Optionally handle the error, e.g., redirect to Account.html
         window.location.href = 'Account.html';
     }
 });
