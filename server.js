@@ -140,7 +140,7 @@ const bcrypt = require('bcrypt');
 // Sign Up (Create New User)
 app.post('/api/signup', (req, res) => {
   const { username, email, dob, password } = req.body;
-
+  alert("in post methodd");
   if (!username || !email || !password || !dob) {
     return res.status(400).send('Missing required fields');
   }
@@ -155,7 +155,7 @@ app.post('/api/signup', (req, res) => {
         if (existingUser) {
             return res.status(400).json({ error: 'Email already exists' });
         }
-
+      });
   // Hash the password before saving to database
   bcrypt.hash(password, 10, (err, hashedPassword) => {
     if (err) {

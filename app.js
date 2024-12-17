@@ -89,6 +89,49 @@ app.post('/api/products/search', (req, res) => {
     });
 });
 
+
+const bcrypt = require('bcrypt');
+
+// Sign Up (Create New User)
+app.post('/api/signup', (req, res) => {
+  const { username, email, dob, password } = req.body;
+  if (!username || !email || !password || !dob) {
+    return res.status(400).send('Missing required fields');
+  }
+
+      // Check if email already exists
+      db.get('SELECT * FROM users WHERE email = ?', [email], (err, existingUser) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+
+        if (existingUser) {
+            return res.status(400).json({ error: 'Email already exists' });
+        }
+      });
+  // Hash the password before saving to database
+  bcrypt.hash(password, 10, (err, hashedPassword) => {
+    if (err) {
+      console.error('Error hashing password:', err);
+      return res.status(500).send('Server error');
+    }
+    // Insert the new user into the database
+    db.run(
+      `INSERT INTO users (username, email, dob, password ) VALUES (?, ?, ?, ?)`,
+      [username, email, dob, hashedPassword],
+      function(err) {
+        if (err) {
+          console.error('Error creating user:', err.message);
+          return res.status(500).send('Error creating user');
+        } else {
+          res.status(201).send('User created successfully');
+        }
+      }
+    );
+  });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
