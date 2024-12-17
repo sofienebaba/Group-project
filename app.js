@@ -354,7 +354,7 @@ app.get('/api/cart', (req, res) => {
         FROM cart_items
         JOIN products ON cart_items.product_id = products.id
         JOIN cart ON cart_items.cart_id = cart.id
-        WHERE cart.user_id = ?`, [userId], (err, rows) => {
+        WHERE cart.user_id = ? and purchased = FALSE`, [userId], (err, rows) => {
             if (err) {
                 console.error('Error fetching cart items:', err);
                 return res.status(500).send('Error fetching cart items');
@@ -388,6 +388,18 @@ app.delete('/api/cart/:productId', (req, res) => {
             return res.status(500).json({ error: 'Failed to delete cart item' });
         }
         res.json({ message: 'Item removed from cart successfully' });
+    });
+});
+
+app.post('/api/purchase/:cartId', (req, res) => {
+    const cartId = req.params.cartId;
+
+    db.run('UPDATE cart SET purchased = ? WHERE id = ?', [true, cartId], function(err) {
+        if (err) {
+            console.error('Error updating cart status:', err);
+            return res.status(500).json({ error: 'Failed to update cart status' });
+        }
+        res.json({ message: 'Purchase successful!' });
     });
 });
 

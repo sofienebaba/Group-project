@@ -83,12 +83,23 @@ document.addEventListener("DOMContentLoaded", function () {
                     const paymentForm = document.getElementById("payment-form");
                     paymentForm.addEventListener("submit", function (event) {
                         event.preventDefault();
-                        fetch('/api/buy_cart/${cartId}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
+                        fetch(`/api/purchase/${cartId}`, {
+                            method: "POST",
                         })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to complete purchase');
+                                }
+                                return response.json();
+                            })
+                            .then((result) => {
+                                alert(result.message); // Notify user of success
+                                window.location.href = "index.html"; // Redirect to confirmation page
+                            })
+                            .catch((error) => {
+                                console.error("Error completing purchase:", error);
+                                alert("There was an error completing your purchase. Please try again.");
+                            });
                     });
                 });
 
