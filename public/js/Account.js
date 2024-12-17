@@ -21,20 +21,6 @@ window.addEventListener('click', (event) => {
 });
 
 
-signInForm.addEventListener('submit', (event) => {
-event.preventDefault();
-window.location.href = 'settings.html';
-});
-
-
-// When the Sign-Up form is submitted, show the Sign-In modal
-document.querySelector('.sign-up-form').addEventListener('submit', function(event) {
-event.preventDefault(); // Prevent the default form submission
-
-// Show the sign-in modal after sign-up form submission
-modal.style.display = 'block'; // Display sign-in modal
-});
-
     // Toggle password visibility for both sign-up and sign-in
     document.querySelectorAll('.show-hide-btn').forEach(button => {
         button.addEventListener('click', function () {
@@ -101,7 +87,7 @@ signInForm.addEventListener('submit', async (event) => {
 
     try {
         // Send POST request to sign in
-        const response = await fetch('http://localhost:3000/api/signin', {
+        const response = await fetch('/api/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,9 +96,8 @@ signInForm.addEventListener('submit', async (event) => {
         });
 
         // Handle the response
-        const result = await response.json();
+        const result = await response.text();
         if (response.ok) {
-            alert('Sign In Successful!');
             window.location.href = 'settings.html';  // Redirect to another page after successful sign-in
         } else {
             alert(result.error || 'Sign In Failed!');
