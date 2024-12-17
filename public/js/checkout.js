@@ -1,8 +1,19 @@
+const modal = document.getElementById("payment-modal");
+const closeButton = document.getElementsByClassName("close")[0];
+
+closeButton.onclick = function () {
+    modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+};
+
 document.addEventListener("DOMContentLoaded", function () {
-    const cartPage = window.location.pathname.includes("cart.html");
 
     // Display Cart Items on the Cart Page
-    if (cartPage) {
         fetch("/api/cart") // Fetch cart items for the logged-in user
             .then((response) => {
                 if (!response.ok) {
@@ -11,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then((cartItems) => {
-                const cartContainer = document.querySelector(".cart-container");
+                const orderItems = document.querySelector(".order-items");
+                console.log(orderItems);
                 const cartSummary = document.createElement("div");
                 cartSummary.classList.add("cart-summary");
-                console.log(cartItems);
                 if (cartItems.length === 0) {
-                    cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+                    orderItems.innerHTML = "<p>Your cart is empty.</p>";
                     return;
                 }
 
@@ -33,19 +44,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p>Quantity: ${item.quantity}</p>
                         <button class="remove-item" data-id="${item.product_id}">Remove</button>
                     `;
-                    cartContainer.appendChild(cartItem);
+                    orderItems.appendChild(cartItem);
                 });
 
                 cartSummary.innerHTML = `
                     <p>Total: $${total.toFixed(2)}</p>
-                    <button id="checkout-pay-now" class="checkout-button">Proceed to Checkout</button>
+                    <button id="checkout-pay-now" class="checkout-button">Buy Now</button>
                 `;
-                cartContainer.appendChild(cartSummary);
+                orderItems.appendChild(cartSummary);
 
                 // Remove Items from Cart
                 document.querySelectorAll(".remove-item").forEach((button) => {
                     button.addEventListener("click", function () {
                         const productId = this.getAttribute("data-id");
+                        console.log(productId);
                         fetch(`/api/cart/${productId}`, {
                             method: "DELETE",
                         })
@@ -64,14 +76,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 // Payment Modal Logic
-                const checkoutButton = document.getElementById("checkout-pay-now");
-                checkoutButton.addEventListener("click", function () {
-                    window.location.href = 'checkout.html';
+                const buyButton = document.getElementById("checkout-pay-now");
+                buyButton.addEventListener("click", function () {
+                    modal.style.display = "block";
                 });
 
             })
             .catch((error) => {
                 console.error("Error fetching cart items:", error);
             });
-    }
 });
+
