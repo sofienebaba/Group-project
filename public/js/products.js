@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => response.json())
     .then(products => {
-      const container = document.querySelector('.card-list');
+      const container = document.querySelector('.cards-container');
       container.innerHTML = '';
       products.forEach(product => {
         const card = document.createElement('div');
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/api/products')
       .then(response => response.json())
       .then(products => {
-        const container = document.querySelector('.card-list');
+        const container = document.querySelector('.cards-container');
         products.forEach(product => {
           const card = document.createElement('div');
           card.classList.add('card'); 
@@ -101,7 +101,7 @@ filterForm.addEventListener("submit", function (event) {
     .then(response => response.json())
     .then(products => {
         // Clear existing products
-        const container = document.querySelector('.card-list');
+        const container = document.querySelector('.cards-container');
         container.innerHTML = '';
         // Display filtered products
         products.forEach(product => {

@@ -273,6 +273,96 @@ app.post('/api/change-email', (req, res) => {
     });
 });
 
+app.post('/api/add-to-cart', (req, res) => {
+    const { productId, quantity } = req.body; // Get product ID and quantity from the request
+    const userId = req.session.userId; // Get the user ID from the session
+
+    if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' }); // User must be logged in
+    }
+
+    db.get('SELECT id FROM cart WHERE user_id = ? and purchased = FALSE', [userId], (err, cart) => {
+        if (err) {
+            console.error('Error fetching cart:', err);
+            return res.status(500).json({ error: 'Failed to fetch cart' });
+        }
+
+        if (!cart) {
+            db.run('INSERT INTO cart (user_id) VALUES (?)', [userId], function(err) {
+                if (err) {
+                    console.error('Error creating cart:', err);
+                    return res.status(500).json({ error: 'Failed to create cart' });
+                }
+
+                const newCartId = this.lastID; // Get the ID of the newly created cart
+                addProductToCart(newCartId, productId, quantity, res);
+            });
+        } else {
+            // If the cart exists, add the product to the existing cart
+            addProductToCart(cart.id, productId, quantity, res);
+        }
+    });
+});
+
+// Helper function to add product to cart
+function addProductToCart(cartId, productId, quantity, res) {
+    // Check if the product is already in the cart
+    db.get('SELECT quantity FROM cart_items WHERE cart_id = ? AND product_id = ?', [cartId, productId], (err, row) => {
+        if (err) {
+            console.error('Error checking cart items:', err);
+            return res.status(500).json({ error: 'Failed to check cart items' });
+        }
+
+        if (row) {
+            // If the product is already in the cart, update the quantity
+            const newQuantity = row.quantity + quantity; // Update quantity
+            db.run('UPDATE cart_items SET quantity = ? WHERE cart_id = ? AND product_id = ?', [newQuantity, cartId, productId], (err) => {
+                if (err) {
+                    console.error('Error updating cart item:', err);
+                    return res.status(500).json({ error: 'Failed to update cart item' });
+                }
+                res.json({ message: 'Product quantity updated in cart' });
+            });
+        } else {
+            // If the product is not in the cart, insert it
+            db.run('INSERT INTO cart_items (cart_id, product_id, quantity) VALUES (?, ?, ?)', [cartId, productId, quantity], (err) => {
+                if (err) {
+                    console.error('Error adding product to cart:', err);
+                    return res.status(500).json({ error: 'Failed to add product to cart' });
+                }
+                res.json({ message: 'Product added to cart' });
+            });
+        }
+    });
+}
+
+app.get('/api/cart', (req, res) => {
+    const userId = req.session.userId;
+
+    if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    db.all(`
+        SELECT 
+            cart_items.cart_id, 
+            products.id AS product_id, 
+            products.name, 
+            products.price, 
+            products.image, 
+            cart_items.quantity
+        FROM cart_items
+        JOIN products ON cart_items.product_id = products.id
+        JOIN cart ON cart_items.cart_id = cart.id
+        WHERE cart.user_id = ?`, [userId], (err, rows) => {
+            if (err) {
+                console.error('Error fetching cart items:', err);
+                return res.status(500).send('Error fetching cart items');
+            }
+            res.json(rows);
+        });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });

@@ -1,29 +1,32 @@
-document.querySelectorAll(".add-to-cart").forEach((button) => {
-    button.addEventListener("click", function () {
-        const product = {
-            id: this.getAttribute("data-id"),
-            name: this.getAttribute("data-name"),
-            price: parseFloat(this.getAttribute("data-price")),
-            image: this.getAttribute("data-image"),
-            quantity: 1, // Set default quantity to 1
-        };
-        fetch("/api/cart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(product),
-        })
-            .then((response) => {
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector('.cards-container'); // Assuming this is the parent container for the product cards
+
+    // Attach a single event listener to the parent container
+    container.addEventListener('click', async function (event) {
+        // Check if the clicked element has the class 'add-to-cart'
+        if (event.target.classList.contains('add-to-cart')) {
+            const productId = event.target.getAttribute('data-id'); // Get product ID from data attribute
+            const quantity = 1; // Set default quantity to 1
+
+            try {
+                const response = await fetch('/api/add-to-cart', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ productId, quantity }), // Send product ID and quantity
+                });
+
+                const result = await response.json();
                 if (response.ok) {
-                    alert(`${product.name} has been added to your cart!`);
-                    updateCartCount(); // Update cart count after adding the product
+                    alert(result.message); // Show success message
                 } else {
-                    alert("Failed to add product to cart. Please try again.");
+                    alert(result.error || 'Failed to add product to cart!');
                 }
-            })
-            .catch((error) => {
-                console.error("Error adding product to cart:", error);
-            });
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong!');
+            }
+        }
     });
 });

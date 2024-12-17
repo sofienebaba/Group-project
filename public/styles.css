@@ -787,7 +787,7 @@ input[type=number] {
     text-align: center;
 }
 
-.card-list {
+#product-list {
     display: flex;
     flex-direction: row;
     justify-content: center;
