@@ -1,17 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Fetch product data from the backend API
-  fetch('/api/products')
-    .then(response => response.json())  // Parse the JSON response
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchTerm = urlParams.get('search');
+
+  if (searchTerm) {
+    fetch('/api/products/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ searchTerm: searchTerm })
+    })
+    .then(response => response.json())
     .then(products => {
-      // Get the container element where products will be displayed
       const container = document.querySelector('.card-list');
-  
-      // Loop through all products and create HTML for each one
+      container.innerHTML = '';
+
       products.forEach(product => {
         const card = document.createElement('div');
-        card.classList.add('card'); // Add the card class for styling
-        
-        // Set the content of the card with product details
+        card.classList.add('card');
         card.innerHTML = `
           <img src="${product.image}" alt="${product.name}" class="card-image">
           <h3 class="card-title">${product.name}</h3>
@@ -25,15 +31,42 @@ document.addEventListener('DOMContentLoaded', function() {
             Add to Cart
           </button>
         `;
-  
-        // Append the card to the container in the HTML
         container.appendChild(card);
       });
-    })
-    .catch(error => {
-      console.error("Error fetching products:", error);
     });
+  } else {
+    fetch('/api/products')
+      .then(response => response.json())
+      .then(products => {
+        const container = document.querySelector('.card-list');
+
+        products.forEach(product => {
+          const card = document.createElement('div');
+          card.classList.add('card'); 
+          
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="card-image">
+            <h3 class="card-title">${product.name}</h3>
+            <p class="card-price">$${product.price}</p>
+            <button 
+              class="add-to-cart"
+              data-id="${product.id}"
+              data-name="${product.name}"
+              data-price="${product.price}"
+              data-image="${product.image}">
+              Add to Cart
+            </button>
+          `;
+  
+          container.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching products:", error);
+      });
+  }
 });
+
 
 const filterForm = document.getElementById("filter-form");
 filterForm.addEventListener("submit", function (event) {
@@ -60,7 +93,6 @@ filterForm.addEventListener("submit", function (event) {
         }
     };
 
-    // Send filters to backend
     fetch('/api/products/filter', {
         method: 'POST',
         headers: {
@@ -70,12 +102,10 @@ filterForm.addEventListener("submit", function (event) {
     })
     .then(response => response.json())
     .then(products => {
-        // Clear existing products
         const container = document.querySelector('.card-list');
         container.innerHTML = '';
-        // Display filtered products
+
         products.forEach(product => {
-            // Your existing card creation code
             const card = document.createElement('div');
             card.classList.add('card');
             card.innerHTML = `

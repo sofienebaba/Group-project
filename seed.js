@@ -1,5 +1,4 @@
 const db = require('./database');
-
 // Array of products to insert into the database
 const products = [
   { name: 'Cristiano Ronaldo', price: 49.99, category: 'soccer', condition: 'excellent', image: '/images/Cristiano Ronaldo.jpg' },
@@ -17,19 +16,21 @@ const products = [
 
 // Insert products into the database
 const seedDatabase = () => {
-  const deleteStmt = db.prepare("DELETE FROM products");
-  deleteStmt.run();
-  deleteStmt.finalize();
+  db.serialize(() => {
+    const deleteStmt = db.prepare("DELETE FROM products");
+    deleteStmt.run();
+    deleteStmt.finalize();
 
-  const stmt = db.prepare("INSERT INTO products (name, price, category, condition, image) VALUES (?, ?, ?, ?, ?)");
+    const stmt = db.prepare("INSERT INTO products (name, price, category, condition, image) VALUES (?, ?, ?, ?, ?)");
 
-  products.forEach(product => {
-    stmt.run(product.name, product.price, product.category, product.condition, product.image);
-  });
+    products.forEach(product => {
+      stmt.run(product.name, product.price, product.category, product.condition, product.image);
+    });
 
-  stmt.finalize(() => {
-    console.log('Database seeded with products!');
-    db.close();
+    stmt.finalize(() => {
+      console.log('Database seeded with products!');
+      db.close();
+    });
   });
 };
 

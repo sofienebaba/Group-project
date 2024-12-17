@@ -1,3 +1,21 @@
+const express = require('express');
+const path = require('path');
+const db = require('./database'); // Import the database
+
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+// Serve static files (images, JS, CSS)
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route to serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
 // Fetch products (for your frontend)
 app.get('/api/products', (req, res) => {
   db.all('SELECT * FROM products', (err, rows) => {
@@ -177,6 +195,7 @@ app.post('/api/signup', (req, res) => {
       }
     );
   });
+});
 });
 
 // Sign In (Authenticate User)
