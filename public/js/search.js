@@ -7,6 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.querySelector('.search-bar input').value;
         
         // Redirect to products page with search term as URL parameter
-        window.location.href = `/products?search=${encodeURIComponent(searchInput)}`;
+        window.location.href = `/products.html?search=${encodeURIComponent(searchInput)}`;
     });
 });
