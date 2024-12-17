@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p>${item.name}</p>
                         <p>$${item.price.toFixed(2)}</p>
                         <p>Quantity: ${item.quantity}</p>
-                        <button class="remove-item" data-id="${item.cart_id}">Remove</button>
+                        <button class="remove-item" data-id="${item.product_id}">Remove</button>
                     `;
                     cartContainer.appendChild(cartItem);
                 });
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.querySelectorAll(".remove-item").forEach((button) => {
                     button.addEventListener("click", function () {
                         const productId = this.getAttribute("data-id");
+                        console.log(productId);
                         fetch(`/api/delete_item`, {
                             method: "DELETE",
                         })

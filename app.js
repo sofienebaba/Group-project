@@ -379,6 +379,19 @@ app.get('/api/cart/count', (req, res) => {
     });
 });
 
+app.delete('/api/delete_item', (req, res) => {
+    const itemId = req.params.itemId; // Get the item ID from the request parameters
+    const userId = req.session.userId;
+
+    db.run('DELETE FROM cart_items WHERE product_id = ?', [itemId], function(err) {
+        if (err) {
+            console.error('Error deleting cart item:', err);
+            return res.status(500).json({ error: 'Failed to delete cart item' });
+        }
+        res.json({ message: 'Item removed from cart successfully' });
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
