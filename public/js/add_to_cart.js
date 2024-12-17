@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const result = await response.json();
                 if (response.ok) {
-                    alert(result.message); // Show success message
+                    updateCartCount();
                 } else {
                     alert(result.error || 'Failed to add product to cart!');
                 }
@@ -30,3 +30,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+function updateCartCount() {
+    fetch("/api/cart/count")
+        .then((response) => response.json())
+        .then((data) => {
+            const cartBadge = document.getElementById("cart-count");
+            cartBadge.textContent = data.count;
+
+            if (data.count === 0) {
+                cartBadge.style.display = "none";
+            } else {
+                cartBadge.style.display = "flex";
+            }
+        })
+        .catch((error) => {
+            console.error("Error updating cart count:", error);
+        });
+}
