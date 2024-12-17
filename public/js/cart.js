@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Remove Items from Cart
                 document.querySelectorAll(".remove-item").forEach((button) => {
                     button.addEventListener("click", function () {
-                        const cartId = this.getAttribute("data-id");
-                        fetch(`/api/cart/${cartId}`, {
+                        const productId = this.getAttribute("data-id");
+                        fetch(`/api/delete_item`, {
                             method: "DELETE",
                         })
                             .then((response) => {
@@ -69,24 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// Function to update the cart count badge
-function updateCartCount() {
-    fetch("/api/cart/count")
-        .then((response) => response.json())
-        .then((data) => {
-            const cartBadge = document.getElementById("cart-count");
-            cartBadge.textContent = data.count;
 
-            if (data.count === 0) {
-                cartBadge.style.display = "none";
-            } else {
-                cartBadge.style.display = "flex";
-            }
-        })
-        .catch((error) => {
-            console.error("Error updating cart count:", error);
-        });
-}
 
 // Payment Modal Logic
 document.getElementById("checkout-pay-now").addEventListener("click", function () {

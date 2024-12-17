@@ -363,6 +363,22 @@ app.get('/api/cart', (req, res) => {
         });
 });
 
+app.get('/api/cart/count', (req, res) => {
+    const userId = req.session.userId; // Get the user ID from the session
+
+    if (!userId) {
+        return res.status(401).json({ count: 0 }); // User must be logged in
+    }
+
+    db.get('SELECT SUM(quantity) AS count FROM cart_items WHERE cart_id IN (SELECT id FROM cart WHERE user_id = ?)', [userId], (err, row) => {
+        if (err) {
+            console.error('Error fetching cart count:', err);
+            return res.status(500).json({ error: 'Failed to fetch cart count' });
+        }
+        res.json({ count: row.count || 0 }); // Return the total count or 0 if no items
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
