@@ -62,7 +62,6 @@ document.querySelector('.sign-up-form').addEventListener('submit', async functio
         password: password,
 
     };
-    alert(formData);
     try {
         // Send POST request to create a new user
         const response = await fetch('/api/signup', {
@@ -74,11 +73,11 @@ document.querySelector('.sign-up-form').addEventListener('submit', async functio
         });
 
         // Handle the response
-        const result = await response.json();
+        const result = await response.text();
         console.log(response);
         if (response.ok) {
             alert('Sign Up Successful!');
-            modal.style.display = 'block';  // Show the sign-in modal after successful sign-up
+            window.location.href = 'index.html';  // Show the sign-in modal after successful sign-up
         } else {
             alert(result.error || 'Sign Up Failed!');
         }
@@ -112,7 +111,6 @@ signInForm.addEventListener('submit', async (event) => {
 
         // Handle the response
         const result = await response.json();
-
         if (response.ok) {
             alert('Sign In Successful!');
             window.location.href = 'settings.html';  // Redirect to another page after successful sign-in

@@ -30,7 +30,6 @@ db.serialize(() => {
 );
 });
 
-
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
@@ -38,7 +37,7 @@ db.serialize(() => {
       username TEXT NOT NULL,
       email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL,
-      dob TEXT NOT NULL
+      dob DATE NOT NULL
     )
   `, (err) => {
     if (err) {
