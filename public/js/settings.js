@@ -22,6 +22,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const cardsContainer = document.querySelector(".cards-container"); // Adjust the selector to match your HTML
+
+    // Fetch purchased cart items for the logged-in user
+    fetch("/api/purchased-cart-items")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch purchased cart items');
+            }
+            return response.json();
+        })
+        .then((cartItems) => {
+            // Clear the container before populating
+            cardsContainer.innerHTML = '';
+
+            if (cartItems.length === 0) {
+                cardsContainer.innerHTML = "<p>No purchased items found.</p>";
+                return;
+            }
+
+            // Populate the cards container with purchased items
+            cartItems.forEach((item) => {
+                const card = document.createElement("div");
+                card.classList.add("card-product");
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="card-image">
+                    <h3 class="card-title">${item.name}</h3>
+                    <p class="card-price">$${item.price.toFixed(2)}</p>
+                    <p>Quantity: ${item.quantity}</p>
+                `;
+                cardsContainer.appendChild(card);
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching purchased cart items:", error);
+        });
+});
+
 const nameChangeForm = document.getElementById("name-edit-form")
 
 nameChangeForm.addEventListener('submit', async function(event) {

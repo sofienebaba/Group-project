@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then((cartItems) => {
-                const cartId = cartItems.cartId;
+                let cartId;
                 const orderItems = document.querySelector(".order-items");
                 console.log(orderItems);
                 const cartSummary = document.createElement("div");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let total = 0;
                 cartItems.forEach((item) => {
                     total += item.price * item.quantity;
-
+                    cartId = item.cart_id;
                     const cartItem = document.createElement("div");
                     cartItem.classList.add("cart-item");
                     cartItem.innerHTML = `
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             });
                     });
                 });
-
                 // Payment Modal Logic
                 const buyButton = document.getElementById("checkout-pay-now");
                 buyButton.addEventListener("click", function () {

@@ -280,13 +280,11 @@ app.post('/api/add-to-cart', (req, res) => {
     if (!userId) {
         return res.status(401).json({ error: 'Unauthorized' }); // User must be logged in
     }
-
-    db.get('SELECT id FROM cart WHERE user_id = ? and purchased = FALSE', [userId], (err, cart) => {
+    db.get('SELECT * FROM cart WHERE user_id = ? and purchased = FALSE', [userId], (err, cart) => {
         if (err) {
             console.error('Error fetching cart:', err);
             return res.status(500).json({ error: 'Failed to fetch cart' });
         }
-
         if (!cart) {
             db.run('INSERT INTO cart (user_id) VALUES (?)', [userId], function(err) {
                 if (err) {
@@ -354,7 +352,7 @@ app.get('/api/cart', (req, res) => {
         FROM cart_items
         JOIN products ON cart_items.product_id = products.id
         JOIN cart ON cart_items.cart_id = cart.id
-        WHERE cart.user_id = ? and purchased = FALSE`, [userId], (err, rows) => {
+        WHERE cart.user_id = ? AND cart.purchased = FALSE`, [userId], (err, rows) => {
             if (err) {
                 console.error('Error fetching cart items:', err);
                 return res.status(500).send('Error fetching cart items');
@@ -370,7 +368,7 @@ app.get('/api/cart/count', (req, res) => {
         return res.status(401).json({ count: 0 }); // User must be logged in
     }
 
-    db.get('SELECT SUM(quantity) AS count FROM cart_items WHERE cart_id IN (SELECT id FROM cart WHERE user_id = ?)', [userId], (err, row) => {
+    db.get('SELECT SUM(quantity) AS count FROM cart_items WHERE cart_id IN (SELECT id FROM cart WHERE user_id = ? and purchased = FALSE)', [userId], (err, row) => {
         if (err) {
             console.error('Error fetching cart count:', err);
             return res.status(500).json({ error: 'Failed to fetch cart count' });
@@ -401,6 +399,33 @@ app.post('/api/purchase/:cartId', (req, res) => {
         }
         res.json({ message: 'Purchase successful!' });
     });
+});
+
+app.get('/api/purchased-cart-items', (req, res) => {
+    const userId = req.session.userId; // Get the user ID from the session
+
+    if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    db.all(`
+        SELECT 
+            cart_items.cart_id, 
+            products.id AS product_id, 
+            products.name, 
+            products.price, 
+            products.image, 
+            cart_items.quantity
+        FROM cart_items
+        JOIN cart ON cart_items.cart_id = cart.id
+        JOIN products ON cart_items.product_id = products.id
+        WHERE cart.user_id = ? AND cart.purchased = TRUE`, [userId], (err, rows) => {
+            if (err) {
+                console.error('Error fetching purchased cart items:', err);
+                return res.status(500).json({ error: 'Failed to fetch purchased cart items' });
+            }
+            res.json(rows); // Send the purchased cart items as JSON
+        });
 });
 
 app.listen(PORT, () => {
