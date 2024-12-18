@@ -1,138 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script defer src="js/cart.js"></script>
     <script defer src="js/search.js"></script>
     <script defer src="js/accountLink.js"></script>
     <script defer src="js/checkout.js"></script>
-</head>
-<body>
-<header>
-    <nav class="navbar">
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
         <a href="index.html">
-            <img src="/Images/logo.webp" alt="Collectible Cards Logo" class="logo">
+          <img
+            src="/Images/logo.webp"
+            alt="Collectible Cards Logo"
+            class="logo"
+          />
         </a>
         <form id="search-bar" class="search-bar">
-            <input type="text" placeholder="Search cards...">
-            <button type="submit">Search</button>
+          <input type="text" placeholder="Search cards..." />
+          <button type="submit">Search</button>
         </form>
         <ul class="nav-links">
-            <li><a href="Account.html">Account</a></li>
-            <li>
-                <a href="cart.html" class="cart-link">
-                    <img src="/Images/shoppingcartimg.png" alt="Cart Icon" class="cart-icon">
-                    <span id="cart-count" class="cart-badge">0</span>
-                </a>
-            </li>
+          <li><a href="Account.html">Account</a></li>
+          <li>
+            <a href="cart.html" class="cart-link">
+              <img
+                src="/Images/shoppingcartimg.png"
+                alt="Cart Icon"
+                class="cart-icon"
+              />
+              <span id="cart-count" class="cart-badge">0</span>
+            </a>
+          </li>
         </ul>
-    </nav>
-    <nav class="secondary-navbar">
+      </nav>
+      <nav class="secondary-navbar">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Cards</a></li>
-            <li><a href="about_us_faq.html#FAQ">FAQ</a></li>
-            <li><a href="about_us_faq.html#AboutUs">About Us</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Cards</a></li>
+          <li><a href="about_us_faq.html#FAQ">FAQ</a></li>
+          <li><a href="about_us_faq.html#AboutUs">About Us</a></li>
         </ul>
-    </nav>
-</header>
-<main class="checkout-container">
-    <section class="shipping-info">
+      </nav>
+    </header>
+    <main class="checkout-container">
+      <section class="shipping-info">
         <h2>Shipping Information</h2>
         <form>
-            <label for="full-name">Full Name</label>
-            <input type="text" id="full-name" placeholder="Enter your full name" required>
+          <label for="full-name">Full Name</label>
+          <input
+            type="text"
+            id="full-name"
+            placeholder="Enter your full name"
+            required
+          />
 
-            <label for="address">Address</label>
-            <input type="text" id="address" placeholder="Enter your address" required>
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            placeholder="Enter your address"
+            required
+          />
 
-            <label for="city">City</label>
-            <input type="text" id="city" placeholder="Enter your city" required>
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="Enter your city" required />
 
-            <label for="state">State/Province</label>
-            <input type="text" id="state" placeholder="Enter your state/province" required>
+          <label for="state">State/Province</label>
+          <input
+            type="text"
+            id="state"
+            placeholder="Enter your state/province"
+            required
+          />
 
-            <label for="zip-code">ZIP Code</label>
-            <input type="text" id="zip-code" placeholder="Enter your ZIP code" required>
+          <label for="zip-code">ZIP Code</label>
+          <input
+            type="text"
+            id="zip-code"
+            placeholder="Enter your ZIP code"
+            required
+          />
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="Enter your phone number" required>
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter your phone number"
+            required
+          />
         </form>
-    </section>
-    <section class="order-summary">
+      </section>
+      <section class="order-summary">
         <h2>Your Order</h2>
         <div class="order-items"></div>
-        <button class="buy-now-button" id="checkout-pay-now">Buy Now</button>
-    </section>
-</main>
-<div id="payment-modal" class="modal">
-    <div class="modal-content">
+      </section>
+    </main>
+    <div id="payment-modal" class="modal">
+      <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Payment Information</h2>
         <form id="payment-form">
-            <label for="card-number">Card Number</label>
-            <input type="text" id="card-number" placeholder="Enter card number" required>
+          <label for="card-number">Card Number</label>
+          <input
+            type="text"
+            id="card-number"
+            placeholder="Enter card number"
+            required
+          />
 
-            <label for="expiry-date">Expiry Date</label>
-            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+          <label for="expiry-date">Expiry Date</label>
+          <input type="text" id="expiry-date" placeholder="MM/YY" required />
 
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" placeholder="Enter CVV" required>
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv" placeholder="Enter CVV" required />
 
-            <button type="submit" class="submit-button">Confirm Payment</button>
+          <button type="submit" class="submit-button">Confirm Payment</button>
         </form>
+      </div>
     </div>
-</div>
 
-<footer>
-    <div class="footer-container">
+    <footer>
+      <div class="footer-container">
         <!-- About Us Section -->
         <div class="about-us">
-            <h3>About Us</h3>
-            <p>Welcome to Card Haven, the ultimate destination for sports collectible cards. Explore a wide range of premium cards from top players worldwide!</p>
+          <h3>About Us</h3>
+          <p>
+            Welcome to Card Haven, the ultimate destination for sports
+            collectible cards. Explore a wide range of premium cards from top
+            players worldwide!
+          </p>
         </div>
 
         <!-- Social Links Section -->
         <div class="social-links">
-            <h3>Follow Us</h3>
-            <ul>
-                <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-            </ul>
+          <h3>Follow Us</h3>
+          <ul>
+            <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+            <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+            <li>
+              <a href="https://instagram.com" target="_blank">Instagram</a>
+            </li>
+            <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+          </ul>
         </div>
 
         <!-- Contact Us Section -->
         <div class="contact-us">
-            <h3>Contact Us</h3>
-            <p>Email: <a >support@cardhaven.com</a></p>
-            <p>Phone: <a>1-800-CARD-HVN</a></p>
+          <h3>Contact Us</h3>
+          <p>Email: <a>support@cardhaven.com</a></p>
+          <p>Phone: <a>1-800-CARD-HVN</a></p>
         </div>
 
         <!-- Customer Service Section -->
         <div class="customer-service">
-            <h3>Customer Service</h3>
-            <ul>
-                <li><a href="about_us_faq.html">FAQ</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="about_us_faq.html">Privacy Policy</a></li>
-            </ul>
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="about_us_faq.html">FAQ</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about_us_faq.html">Privacy Policy</a></li>
+          </ul>
         </div>
 
         <!-- Newsletter Signup Section -->
         <div class="newsletter">
-            <h3>Newsletter</h3>
-            <p>Subscribe to our newsletter for the latest promotions.</p>
-            <form action="subscribe.html" method="POST">
-                <input type="email" placeholder="Enter your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
+          <h3>Newsletter</h3>
+          <p>Subscribe to our newsletter for the latest promotions.</p>
+          <form action="subscribe.html" method="POST">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
         </div>
-    </div>
-</footer>
-</body>
+      </div>
+    </footer>
+  </body>
 </html>
